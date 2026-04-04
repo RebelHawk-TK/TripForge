@@ -50,8 +50,7 @@ export default function Generate() {
   const [searchParams] = useSearchParams();
 
   const [destination, setDestination] = useState(searchParams.get("destination") || "");
-  const [days, setDays] = useState(5);
-  const [budget, setBudget] = useState(150);
+  const [budgetTier, setBudgetTier] = useState("moderate");
   const [travelers, setTravelers] = useState(2);
   const [travelerType, setTravelerType] = useState("couple");
   const [startDate, setStartDate] = useState("");
@@ -88,10 +87,18 @@ export default function Generate() {
       const selectedPace = PACE_OPTIONS.find((p) => p.id === pace)?.label || "Moderate pace";
       const selectedVibe = VIBE_OPTIONS.find((v) => v.id === vibe)?.label || "Mix of Both";
 
+      const computedDays = Math.max(1, Math.ceil(
+        (new Date(endDate).getTime() - new Date(startDate).getTime()) / (1000 * 60 * 60 * 24)
+      ) + 1);
+
+      const budgetMap: Record<string, number> = {
+        budget: 75, moderate: 150, premium: 300, luxury: 500,
+      };
+
       const data = await generate({
         destination,
-        days,
-        budgetPerDay: budget,
+        days: computedDays,
+        budgetPerDay: budgetMap[budgetTier] || 150,
         travelers,
         travelerType,
         startDate,
@@ -174,28 +181,20 @@ export default function Generate() {
           </div>
         </div>
 
-        {/* Trip details */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16 }}>
+        {/* Budget & travelers */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
           <div>
-            <label htmlFor="days">Days</label>
-            <input
-              id="days"
-              type="number"
-              min={1}
-              max={30}
-              value={days}
-              onChange={(e) => setDays(Number(e.target.value))}
-            />
-          </div>
-          <div>
-            <label htmlFor="budget">$/day per person</label>
-            <input
-              id="budget"
-              type="number"
-              min={10}
-              value={budget}
-              onChange={(e) => setBudget(Number(e.target.value))}
-            />
+            <label htmlFor="budgetTier">Budget</label>
+            <select
+              id="budgetTier"
+              value={budgetTier}
+              onChange={(e) => setBudgetTier(e.target.value)}
+            >
+              <option value="budget">Budget ($50-100/day)</option>
+              <option value="moderate">Moderate ($100-200/day)</option>
+              <option value="premium">Premium ($200-400/day)</option>
+              <option value="luxury">Luxury ($400+/day)</option>
+            </select>
           </div>
           <div>
             <label htmlFor="travelers">Travelers</label>

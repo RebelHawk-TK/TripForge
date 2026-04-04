@@ -111,6 +111,7 @@ export default function Generate() {
         },
       });
       setResult(data as ItineraryResult);
+      window.scrollTo(0, 0);
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : "Something went wrong. Try again.";
       setError(message);

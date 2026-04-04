@@ -119,6 +119,12 @@ function EditableActivityCard({
 export default function ItineraryDisplay({ itinerary, onUpdate }: Props) {
   const [editing, setEditing] = useState(false);
   const [days, setDays] = useState(itinerary.days);
+
+  // Title-case the destination
+  const displayDestination = itinerary.destination
+    .split(" ")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+    .join(" ");
   const [copied, setCopied] = useState(false);
   const totalCost = days.reduce((sum, day) => sum + (day.estimatedCost || 0), 0);
 
@@ -166,7 +172,7 @@ export default function ItineraryDisplay({ itinerary, onUpdate }: Props) {
       }}>
         <div>
           <h1 style={{ fontFamily: "var(--heading)", fontSize: 28, fontWeight: 700, marginBottom: 4 }}>
-            {itinerary.destination}
+            {displayDestination}
           </h1>
           <p style={{ color: "var(--text-secondary)", fontSize: 15 }}>
             {days.length} days

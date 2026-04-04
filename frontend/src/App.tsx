@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import ScrollToTop from "./components/ScrollToTop";
 import Home from "./pages/Home";
 import Generate from "./pages/Generate";
 import MyTrips from "./pages/MyTrips";
@@ -11,6 +12,7 @@ import SharedTrip from "./pages/SharedTrip";
 function App() {
   return (
     <>
+      <ScrollToTop />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

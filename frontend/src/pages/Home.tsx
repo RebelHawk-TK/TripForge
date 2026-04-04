@@ -29,12 +29,12 @@ export default function Home() {
           backgroundImage: "url(/images/hero-banner.png)",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          opacity: 0.35,
+          opacity: 0.6,
         }} />
         <div style={{
           position: "absolute",
           inset: 0,
-          background: "linear-gradient(180deg, rgba(250,245,240,0.7) 0%, rgba(250,245,240,0.95) 100%)",
+          background: "linear-gradient(180deg, rgba(250,245,240,0.5) 0%, rgba(250,245,240,0.85) 100%)",
         }} />
 
         <div className="container" style={{ position: "relative", zIndex: 1, padding: "80px 24px 60px" }}>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { useItinerary } from "../hooks/useItinerary";
@@ -63,6 +63,12 @@ export default function Generate() {
   const [error, setError] = useState("");
   const [result, setResult] = useState<ItineraryResult | null>(null);
 
+  useEffect(() => {
+    if (result) {
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+  }, [result]);
+
   const toggleActivity = (id: string) => {
     setActivities((prev) =>
       prev.includes(id) ? prev.filter((a) => a !== id) : [...prev, id]
@@ -111,7 +117,6 @@ export default function Generate() {
         },
       });
       setResult(data as ItineraryResult);
-      window.scrollTo(0, 0);
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : "Something went wrong. Try again.";
       setError(message);

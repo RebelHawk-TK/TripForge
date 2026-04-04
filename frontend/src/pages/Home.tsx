@@ -8,6 +8,8 @@ const DESTINATIONS = [
   { name: "Italy", desc: "Coast & Culture", image: "/images/blog-italy.png" },
   { name: "Iceland", desc: "Fire & Ice", image: "/images/dest-iceland.png" },
   { name: "Morocco", desc: "Desert Colors", image: "/images/dest-morocco.png" },
+  { name: "Tokyo", desc: "Neon & Tradition", image: "/images/dest-tokyo.png" },
+  { name: "Rome", desc: "Eternal City", image: "/images/dest-rome.png" },
 ];
 
 export default function Home() {

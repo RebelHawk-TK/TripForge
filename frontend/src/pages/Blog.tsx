@@ -8,6 +8,7 @@ const POSTS = [
     date: "Apr 4, 2026",
     category: "Itineraries",
     readTime: "8 min",
+    image: "/images/blog-italy.png",
   },
   {
     slug: "ai-travel-planning-2026",
@@ -16,6 +17,7 @@ const POSTS = [
     date: "Apr 2, 2026",
     category: "Guides",
     readTime: "5 min",
+    image: "/images/hero-banner.png",
   },
   {
     slug: "weekend-asheville-couples",
@@ -24,6 +26,7 @@ const POSTS = [
     date: "Mar 28, 2026",
     category: "Itineraries",
     readTime: "6 min",
+    image: "/images/blog-adventure.png",
   },
   {
     slug: "budget-travel-tips",
@@ -32,6 +35,7 @@ const POSTS = [
     date: "Mar 25, 2026",
     category: "Tips",
     readTime: "7 min",
+    image: "/images/blog-adventure.png",
   },
   {
     slug: "best-time-visit-japan",
@@ -40,6 +44,7 @@ const POSTS = [
     date: "Mar 20, 2026",
     category: "Guides",
     readTime: "10 min",
+    image: "/images/blog-japan.png",
   },
   {
     slug: "family-travel-disney-alternatives",
@@ -48,6 +53,7 @@ const POSTS = [
     date: "Mar 15, 2026",
     category: "Itineraries",
     readTime: "6 min",
+    image: "/images/blog-italy.png",
   },
 ];
 
@@ -124,19 +130,12 @@ export default function Blog() {
                   e.currentTarget.style.transform = "none";
                 }}
               >
-                {/* Placeholder image band */}
                 <div style={{
-                  height: 160,
-                  background: `linear-gradient(135deg, var(--teal-light) 0%, var(--gold-light) 100%)`,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}>
-                  <span style={{ fontSize: 40, opacity: 0.6 }}>{
-                    post.category === "Itineraries" ? "\uD83D\uDDFA\uFE0F" :
-                    post.category === "Guides" ? "\uD83D\uDCD6" : "\uD83D\uDCA1"
-                  }</span>
-                </div>
+                  height: 180,
+                  backgroundImage: `url(${post.image})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }} />
 
                 <div style={{ padding: "20px 24px" }}>
                   <div style={{

@@ -43,13 +43,7 @@ export default function Navbar() {
             alignItems: "center",
             gap: 10,
           }}>
-            <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
-              <circle cx="16" cy="16" r="14" stroke="var(--teal)" strokeWidth="2.5" />
-              <ellipse cx="16" cy="16" rx="8" ry="14" stroke="var(--teal)" strokeWidth="1.5" />
-              <line x1="2" y1="16" x2="30" y2="16" stroke="var(--teal)" strokeWidth="1.5" />
-              <line x1="16" y1="2" x2="16" y2="30" stroke="var(--teal)" strokeWidth="1.5" />
-              <circle cx="16" cy="16" r="3" fill="var(--gold)" />
-            </svg>
+            <img src="/images/logo.png" alt="TravelForge" width="32" height="32" style={{ borderRadius: 6 }} />
             TravelForge
           </Link>
 

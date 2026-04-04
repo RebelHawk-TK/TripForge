@@ -17,39 +17,27 @@ export default function Home() {
     <div>
       {/* Hero */}
       <section style={{
-        padding: "80px 24px 60px",
+        padding: "0",
         textAlign: "center",
-        background: "linear-gradient(180deg, var(--cream-dark) 0%, var(--cream) 100%)",
         position: "relative",
         overflow: "hidden",
       }}>
-        {/* Decorative globe lines */}
+        {/* Banner image */}
         <div style={{
           position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          width: 600,
-          height: 600,
-          borderRadius: "50%",
-          border: "1px solid var(--border)",
-          opacity: 0.4,
-          pointerEvents: "none",
+          inset: 0,
+          backgroundImage: "url(/images/hero-banner.png)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          opacity: 0.35,
         }} />
         <div style={{
           position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          width: 400,
-          height: 400,
-          borderRadius: "50%",
-          border: "1px solid var(--border)",
-          opacity: 0.3,
-          pointerEvents: "none",
+          inset: 0,
+          background: "linear-gradient(180deg, rgba(250,245,240,0.7) 0%, rgba(250,245,240,0.95) 100%)",
         }} />
 
-        <div className="container" style={{ position: "relative", zIndex: 1 }}>
+        <div className="container" style={{ position: "relative", zIndex: 1, padding: "80px 24px 60px" }}>
           <p style={{
             fontSize: 13,
             fontWeight: 600,

@@ -77,9 +77,9 @@ function extractJSON(raw) {
     throw new Error(`Could not parse JSON from AI response. Raw length: ${raw.length}, starts with: ${raw.substring(0, 100)}`);
 }
 async function generateItinerary(params) {
-    const model = params.tier === "free"
-        ? "claude-haiku-4-5-20251001"
-        : "claude-sonnet-4-6-20260320";
+    // Use Haiku for all tiers — fast, cheap, reliable
+    // Upgrade to Sonnet when API access is confirmed
+    const model = "claude-haiku-4-5-20251001";
     const tierInstructions = {
         free: "Keep it concise — activity name, location, and brief 1-sentence description only.",
         basic: "Include descriptions and estimated costs per activity.",

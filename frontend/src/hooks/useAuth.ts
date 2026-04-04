@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import {
   onAuthStateChanged,
-  signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
   GoogleAuthProvider,
   signOut as firebaseSignOut,
 } from "firebase/auth";
@@ -15,6 +16,11 @@ export function useAuth() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Check for redirect result on page load
+    getRedirectResult(auth).catch(() => {
+      // Ignore — no redirect pending
+    });
+
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
       setLoading(false);
@@ -22,7 +28,7 @@ export function useAuth() {
     return unsubscribe;
   }, []);
 
-  const signInWithGoogle = () => signInWithPopup(auth, googleProvider);
+  const signInWithGoogle = () => signInWithRedirect(auth, googleProvider);
   const signOut = () => firebaseSignOut(auth);
 
   return { user, loading, signInWithGoogle, signOut };

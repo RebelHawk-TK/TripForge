@@ -1,61 +1,5 @@
 import { Link } from "react-router-dom";
-
-const POSTS = [
-  {
-    slug: "10-day-italy-under-2k",
-    title: "10-Day Italy Itinerary Under $2,000",
-    excerpt: "Rome to Amalfi on a real budget. Day-by-day plan with restaurants, trains, and hidden spots most tourists miss.",
-    date: "Apr 4, 2026",
-    category: "Itineraries",
-    readTime: "8 min",
-    image: "/images/blog-italy.png",
-  },
-  {
-    slug: "ai-travel-planning-2026",
-    title: "Why AI Travel Planning Actually Works in 2026",
-    excerpt: "The tools have caught up to the hype. Here's what changed and how to get the best results from AI itinerary generators.",
-    date: "Apr 2, 2026",
-    category: "Guides",
-    readTime: "5 min",
-    image: "/images/hero-banner.png",
-  },
-  {
-    slug: "weekend-asheville-couples",
-    title: "The Perfect Asheville Weekend for Couples",
-    excerpt: "Breweries, Blue Ridge views, and the best dinner reservation in town. A 3-day plan that feels longer than it is.",
-    date: "Mar 28, 2026",
-    category: "Itineraries",
-    readTime: "6 min",
-    image: "/images/blog-adventure.png",
-  },
-  {
-    slug: "budget-travel-tips",
-    title: "12 Budget Travel Tricks That Actually Save Money",
-    excerpt: "Skip the generic advice. These are specific tactics we've tested across 30+ countries and 200+ AI-generated trips.",
-    date: "Mar 25, 2026",
-    category: "Tips",
-    readTime: "7 min",
-    image: "/images/blog-adventure.png",
-  },
-  {
-    slug: "best-time-visit-japan",
-    title: "When to Visit Japan (Month-by-Month Guide)",
-    excerpt: "Cherry blossoms get all the attention, but autumn is better for most travelers. Here's the real breakdown by season.",
-    date: "Mar 20, 2026",
-    category: "Guides",
-    readTime: "10 min",
-    image: "/images/blog-japan.png",
-  },
-  {
-    slug: "family-travel-disney-alternatives",
-    title: "5 Family Vacations That Beat Disney World",
-    excerpt: "Your kids will thank you later. National parks, Costa Rica, and three other trips that create real memories.",
-    date: "Mar 15, 2026",
-    category: "Itineraries",
-    readTime: "6 min",
-    image: "/images/blog-italy.png",
-  },
-];
+import { BLOG_POSTS } from "../data/blogPosts";
 
 const CATEGORIES = ["All", "Itineraries", "Guides", "Tips"];
 
@@ -120,78 +64,84 @@ export default function Blog() {
             gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))",
             gap: 24,
           }}>
-            {POSTS.map((post) => (
-              <article
+            {BLOG_POSTS.map((post) => (
+              <Link
                 key={post.slug}
-                style={{
-                  borderRadius: "var(--radius-lg)",
-                  border: "1px solid var(--border)",
-                  background: "var(--white)",
-                  overflow: "hidden",
-                  transition: "box-shadow 0.2s, transform 0.2s",
-                  cursor: "pointer",
-                }}
-                onMouseOver={(e) => {
-                  e.currentTarget.style.boxShadow = "var(--shadow)";
-                  e.currentTarget.style.transform = "translateY(-2px)";
-                }}
-                onMouseOut={(e) => {
-                  e.currentTarget.style.boxShadow = "none";
-                  e.currentTarget.style.transform = "none";
-                }}
+                to={`/blog/${post.slug}`}
+                style={{ textDecoration: "none", color: "inherit" }}
               >
-                <div style={{
-                  height: 180,
-                  backgroundImage: `url(${post.image})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }} />
-
-                <div style={{ padding: "20px 24px" }}>
+                <article
+                  style={{
+                    borderRadius: "var(--radius-lg)",
+                    border: "1px solid var(--border)",
+                    background: "var(--white)",
+                    overflow: "hidden",
+                    transition: "box-shadow 0.2s, transform 0.2s",
+                    cursor: "pointer",
+                    height: "100%",
+                  }}
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.boxShadow = "var(--shadow)";
+                    e.currentTarget.style.transform = "translateY(-2px)";
+                  }}
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.boxShadow = "none";
+                    e.currentTarget.style.transform = "none";
+                  }}
+                >
                   <div style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 8,
-                    marginBottom: 10,
-                  }}>
-                    <span style={{
-                      fontSize: 11,
-                      fontWeight: 600,
-                      textTransform: "uppercase",
-                      letterSpacing: "0.5px",
-                      color: "var(--teal)",
-                      background: "var(--teal-light)",
-                      padding: "3px 8px",
-                      borderRadius: 4,
+                    height: 180,
+                    backgroundImage: `url(${post.image})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }} />
+
+                  <div style={{ padding: "20px 24px" }}>
+                    <div style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 8,
+                      marginBottom: 10,
                     }}>
-                      {post.category}
-                    </span>
-                    <span style={{ fontSize: 12, color: "var(--text-secondary)" }}>
-                      {post.date}
-                    </span>
-                    <span style={{ fontSize: 12, color: "var(--text-secondary)" }}>
-                      &middot; {post.readTime}
-                    </span>
+                      <span style={{
+                        fontSize: 11,
+                        fontWeight: 600,
+                        textTransform: "uppercase",
+                        letterSpacing: "0.5px",
+                        color: "var(--teal)",
+                        background: "var(--teal-light)",
+                        padding: "3px 8px",
+                        borderRadius: 4,
+                      }}>
+                        {post.category}
+                      </span>
+                      <span style={{ fontSize: 12, color: "var(--text-secondary)" }}>
+                        {post.date}
+                      </span>
+                      <span style={{ fontSize: 12, color: "var(--text-secondary)" }}>
+                        &middot; {post.readTime}
+                      </span>
+                    </div>
+                    <h3 style={{
+                      fontFamily: "var(--heading)",
+                      fontSize: 19,
+                      fontWeight: 600,
+                      marginBottom: 8,
+                      lineHeight: 1.3,
+                      color: "var(--brown)",
+                    }}>
+                      {post.title}
+                    </h3>
+                    <p style={{
+                      fontSize: 14,
+                      color: "var(--text-secondary)",
+                      lineHeight: 1.6,
+                    }}>
+                      {post.excerpt}
+                    </p>
                   </div>
-                  <h3 style={{
-                    fontFamily: "var(--heading)",
-                    fontSize: 19,
-                    fontWeight: 600,
-                    marginBottom: 8,
-                    lineHeight: 1.3,
-                    color: "var(--brown)",
-                  }}>
-                    {post.title}
-                  </h3>
-                  <p style={{
-                    fontSize: 14,
-                    color: "var(--text-secondary)",
-                    lineHeight: 1.6,
-                  }}>
-                    {post.excerpt}
-                  </p>
-                </div>
-              </article>
+                </article>
+              </Link>
             ))}
           </div>
         </div>

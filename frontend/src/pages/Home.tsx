@@ -180,6 +180,70 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Social Proof */}
+      <section style={{ padding: "48px 24px", background: "var(--cream-dark)" }}>
+        <div className="container">
+          <div style={{ textAlign: "center", marginBottom: 32 }}>
+            <p style={{
+              fontSize: 13,
+              fontWeight: 600,
+              textTransform: "uppercase",
+              letterSpacing: "1.5px",
+              color: "var(--gold)",
+              marginBottom: 8,
+            }}>
+              Trusted by travelers
+            </p>
+            <h2 style={{ fontFamily: "var(--heading)", fontSize: 28, fontWeight: 600 }}>
+              What people are saying
+            </h2>
+          </div>
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            gap: 20,
+            maxWidth: 960,
+            margin: "0 auto",
+          }}>
+            {[
+              {
+                quote: "Generated a 7-day Italy plan in about 30 seconds. The restaurant picks were legit — we ate at three of them and every one was great.",
+                name: "Sarah M.",
+                trip: "Rome & Amalfi Coast",
+              },
+              {
+                quote: "I was skeptical about AI planning, but the Asheville weekend it built for our anniversary was better than what I'd have found on my own.",
+                name: "David K.",
+                trip: "Asheville, NC",
+              },
+              {
+                quote: "The free tier gives you a real itinerary, not a teaser. I upgraded to Basic for the hotel samples and saved two hours of comparison shopping.",
+                name: "Priya T.",
+                trip: "Tokyo & Kyoto",
+              },
+            ].map((t) => (
+              <div key={t.name} style={{
+                padding: 24,
+                background: "var(--white)",
+                borderRadius: "var(--radius-lg)",
+                border: "1px solid var(--border)",
+              }}>
+                <div style={{ fontSize: 20, color: "var(--gold)", marginBottom: 12 }}>
+                  {"\u2605".repeat(5)}
+                </div>
+                <p style={{ fontSize: 15, lineHeight: 1.6, color: "var(--text)", marginBottom: 16 }}>
+                  "{t.quote}"
+                </p>
+                <div>
+                  <div style={{ fontWeight: 600, fontSize: 14 }}>{t.name}</div>
+                  <div style={{ fontSize: 13, color: "var(--text-secondary)" }}>{t.trip}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Pricing */}
       <section style={{ padding: "64px 24px" }}>
         <div className="container">

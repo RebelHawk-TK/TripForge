@@ -7,53 +7,108 @@ exports.generateItinerary = generateItinerary;
 const sdk_1 = __importDefault(require("@anthropic-ai/sdk"));
 const anthropic = new sdk_1.default();
 const SYSTEM_PROMPT = `You are a travel planning AI. Generate itineraries as structured JSON.
-Each day has: morning, afternoon, evening activities with names, descriptions,
-estimated costs, and coordinates. Be specific — real restaurant names, real
-attractions, real neighborhoods. Adjust for budget and traveler preferences.
 
-Return ONLY valid JSON (no markdown, no explanation) matching this schema:
+CRITICAL RULES:
+- Return ONLY a valid JSON object. No markdown, no code fences, no explanation before or after.
+- Do NOT use trailing commas in arrays or objects.
+- Do NOT include any text outside the JSON object.
+- Start your response with { and end with }
+- Keep descriptions brief (1-2 sentences max) to stay within response limits.
+
+JSON schema:
 {
   "days": [{
     "dayNumber": 1,
     "date": "2026-04-10",
-    "morning": { "name": "...", "description": "...", "location": "...", "estimatedCost": 0 },
+    "morning": { "name": "Activity Name", "description": "Brief description.", "location": "Neighborhood or address", "estimatedCost": 0 },
     "afternoon": { "name": "...", "description": "...", "location": "...", "estimatedCost": 0 },
     "evening": { "name": "...", "description": "...", "location": "...", "estimatedCost": 0 },
     "estimatedCost": 0
   }]
-}`;
+}
+
+Be specific — use real restaurant names, real attractions, real neighborhoods. Adjust for budget and traveler preferences.`;
+/**
+ * Extract valid JSON from text that may contain markdown fences or extra content.
+ */
+function extractJSON(raw) {
+    let text = raw.trim();
+    // Strip markdown code fences
+    if (text.startsWith("```")) {
+        text = text.replace(/^```(?:json)?\s*\n?/, "").replace(/\n?```\s*$/, "");
+    }
+    // Try direct parse first
+    try {
+        return JSON.parse(text);
+    }
+    catch {
+        // Fall through to extraction
+    }
+    // Try to extract the JSON object from surrounding text
+    const match = text.match(/\{[\s\S]*\}/);
+    if (match) {
+        try {
+            return JSON.parse(match[0]);
+        }
+        catch {
+            // Fall through
+        }
+    }
+    // Try fixing common issues: trailing commas
+    const cleaned = text
+        .replace(/,\s*}/g, "}")
+        .replace(/,\s*]/g, "]");
+    try {
+        return JSON.parse(cleaned);
+    }
+    catch {
+        // Fall through
+    }
+    // Try extracting + cleaning
+    const match2 = cleaned.match(/\{[\s\S]*\}/);
+    if (match2) {
+        try {
+            return JSON.parse(match2[0]);
+        }
+        catch {
+            // Fall through
+        }
+    }
+    throw new Error(`Could not parse JSON from AI response. Raw length: ${raw.length}, starts with: ${raw.substring(0, 100)}`);
+}
 async function generateItinerary(params) {
     const model = params.tier === "free"
         ? "claude-haiku-4-5-20251001"
         : "claude-sonnet-4-6-20260320";
     const tierInstructions = {
-        free: "Single-line items only (activity name + location). No descriptions or costs.",
-        basic: "Full descriptions + estimated costs per activity.",
-        enhanced: "Full descriptions + costs + specific booking recommendations with venue names and addresses.",
+        free: "Keep it concise — activity name, location, and brief 1-sentence description only.",
+        basic: "Include descriptions and estimated costs per activity.",
+        enhanced: "Include descriptions, costs, and specific booking recommendations with venue names and addresses.",
     };
-    const message = await anthropic.messages.create({
-        model,
-        max_tokens: params.tier === "free" ? 1024 : 4096,
-        system: SYSTEM_PROMPT,
-        messages: [
-            {
-                role: "user",
-                content: `Plan a ${params.days}-day trip to ${params.destination}.
+    const userPrompt = `Plan a ${params.days}-day trip to ${params.destination}.
 Budget: $${params.budgetPerDay}/day per person
 Travelers: ${params.travelers} (${params.travelerType})
 Preferences: ${JSON.stringify(params.preferences)}
 Dates: ${params.startDate} to ${params.endDate}
 
-${tierInstructions[params.tier]}`,
+${tierInstructions[params.tier]}
+
+Remember: respond with ONLY the JSON object, starting with { and ending with }. No other text.`;
+    const message = await anthropic.messages.create({
+        model,
+        max_tokens: 8192,
+        system: SYSTEM_PROMPT,
+        messages: [
+            {
+                role: "user",
+                content: userPrompt,
             },
         ],
     });
-    let text = message.content[0].type === "text" ? message.content[0].text : "";
-    // Strip markdown code fences if Claude wraps the JSON
-    text = text.trim();
-    if (text.startsWith("```")) {
-        text = text.replace(/^```(?:json)?\s*\n?/, "").replace(/\n?```\s*$/, "");
+    const rawText = message.content[0].type === "text" ? message.content[0].text : "";
+    if (!rawText) {
+        throw new Error("AI returned empty response");
     }
-    return JSON.parse(text);
+    return extractJSON(rawText);
 }
 //# sourceMappingURL=anthropic.js.map

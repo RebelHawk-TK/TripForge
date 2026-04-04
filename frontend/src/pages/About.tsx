@@ -65,11 +65,22 @@ export default function About() {
               — the planning.
             </p>
 
+            {/* Scenic break — Paris */}
+            <div style={{
+              margin: "48px -24px 40px",
+              height: 200,
+              borderRadius: "var(--radius-lg)",
+              backgroundImage: "url(/images/dest-paris.png)",
+              backgroundSize: "cover",
+              backgroundPosition: "center 40%",
+              opacity: 0.85,
+            }} />
+
             <h2 style={{
               fontFamily: "var(--heading)",
               fontSize: 28,
               fontWeight: 600,
-              marginTop: 48,
+              marginTop: 0,
               marginBottom: 16,
             }}>
               The concierge you always wanted
@@ -97,11 +108,22 @@ export default function About() {
               Enhanced tier does that too.
             </p>
 
+            {/* Scenic break — Santorini */}
+            <div style={{
+              margin: "48px -24px 40px",
+              height: 200,
+              borderRadius: "var(--radius-lg)",
+              backgroundImage: "url(/images/dest-santorini.png)",
+              backgroundSize: "cover",
+              backgroundPosition: "center 60%",
+              opacity: 0.85,
+            }} />
+
             <h2 style={{
               fontFamily: "var(--heading)",
               fontSize: 28,
               fontWeight: 600,
-              marginTop: 48,
+              marginTop: 0,
               marginBottom: 16,
             }}>
               Built in Greenville, for the world
@@ -122,11 +144,22 @@ export default function About() {
               and that's what we're building.
             </p>
 
+            {/* Scenic break — Morocco */}
+            <div style={{
+              margin: "48px -24px 40px",
+              height: 200,
+              borderRadius: "var(--radius-lg)",
+              backgroundImage: "url(/images/dest-morocco.png)",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              opacity: 0.85,
+            }} />
+
             <h2 style={{
               fontFamily: "var(--heading)",
               fontSize: 28,
               fontWeight: 600,
-              marginTop: 48,
+              marginTop: 0,
               marginBottom: 16,
             }}>
               Our promise

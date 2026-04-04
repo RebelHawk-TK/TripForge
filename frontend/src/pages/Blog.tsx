@@ -68,8 +68,18 @@ export default function Blog() {
         textAlign: "center",
         background: "var(--white)",
         borderBottom: "1px solid var(--border)",
+        position: "relative",
+        overflow: "hidden",
       }}>
-        <div className="container">
+        <div style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage: "url(/images/dest-iceland.png)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          opacity: 0.08,
+        }} />
+        <div className="container" style={{ position: "relative" }}>
           <h1 style={{
             fontFamily: "var(--heading)",
             fontSize: "clamp(32px, 5vw, 44px)",

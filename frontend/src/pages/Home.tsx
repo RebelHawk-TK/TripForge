@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
 const DESTINATIONS = [
-  { name: "Paris", emoji: "\uD83C\uDDEB\uD83C\uDDF7", desc: "City of Light" },
-  { name: "Tokyo", emoji: "\uD83C\uDDEF\uD83C\uDDF5", desc: "Neon & Tradition" },
-  { name: "Bali", emoji: "\uD83C\uDDEE\uD83C\uDDE9", desc: "Island Paradise" },
-  { name: "Rome", emoji: "\uD83C\uDDEE\uD83C\uDDF9", desc: "Eternal City" },
-  { name: "Iceland", emoji: "\uD83C\uDDEE\uD83C\uDDF8", desc: "Fire & Ice" },
-  { name: "Morocco", emoji: "\uD83C\uDDF2\uD83C\uDDE6", desc: "Desert Colors" },
+  { name: "Paris", desc: "City of Light", image: "/images/dest-paris.png" },
+  { name: "Santorini", desc: "Blue Domes & Sea", image: "/images/dest-santorini.png" },
+  { name: "Bali", desc: "Island Paradise", image: "/images/dest-bali.png" },
+  { name: "Italy", desc: "Coast & Culture", image: "/images/blog-italy.png" },
+  { name: "Iceland", desc: "Fire & Ice", image: "/images/dest-iceland.png" },
+  { name: "Morocco", desc: "Desert Colors", image: "/images/dest-morocco.png" },
 ];
 
 export default function Home() {
@@ -96,7 +96,7 @@ export default function Home() {
           </div>
           <div style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
             gap: 16,
           }}>
             {DESTINATIONS.map((dest) => (
@@ -104,27 +104,33 @@ export default function Home() {
                 key={dest.name}
                 to={`/generate?destination=${encodeURIComponent(dest.name)}`}
                 style={{
-                  padding: "24px 16px",
                   borderRadius: "var(--radius-lg)",
                   border: "1px solid var(--border)",
                   background: "var(--white)",
-                  textAlign: "center",
                   textDecoration: "none",
+                  overflow: "hidden",
                   transition: "all 0.2s",
                   cursor: "pointer",
                 }}
                 onMouseOver={(e) => {
-                  e.currentTarget.style.boxShadow = "var(--shadow)";
-                  e.currentTarget.style.transform = "translateY(-2px)";
+                  e.currentTarget.style.boxShadow = "var(--shadow-lg)";
+                  e.currentTarget.style.transform = "translateY(-3px)";
                 }}
                 onMouseOut={(e) => {
                   e.currentTarget.style.boxShadow = "none";
                   e.currentTarget.style.transform = "none";
                 }}
               >
-                <div style={{ fontSize: 32, marginBottom: 8 }}>{dest.emoji}</div>
-                <div style={{ fontWeight: 600, color: "var(--brown)", fontSize: 15 }}>{dest.name}</div>
-                <div style={{ fontSize: 13, color: "var(--text-secondary)" }}>{dest.desc}</div>
+                <div style={{
+                  height: 130,
+                  backgroundImage: `url(${dest.image})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }} />
+                <div style={{ padding: "14px 16px", textAlign: "center" }}>
+                  <div style={{ fontWeight: 600, color: "var(--brown)", fontSize: 16 }}>{dest.name}</div>
+                  <div style={{ fontSize: 13, color: "var(--text-secondary)" }}>{dest.desc}</div>
+                </div>
               </Link>
             ))}
           </div>

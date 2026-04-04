@@ -1,56 +1,148 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
+
+const NAV_LINKS = [
+  { to: "/", label: "Home" },
+  { to: "/generate", label: "Plan a Trip" },
+  { to: "/blog", label: "Blog" },
+  { to: "/my-trips", label: "My Trips" },
+];
 
 export default function Navbar() {
   const { user, signInWithGoogle, signOut } = useAuth();
+  const location = useLocation();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <nav style={{
-      borderBottom: "1px solid var(--border)",
-      background: "white",
-      position: "sticky",
-      top: 0,
-      zIndex: 100,
-    }}>
-      <div className="container" style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        height: 60,
+    <>
+      <div className="announcement-bar">
+        Free AI itineraries — plan your next adventure in seconds
+      </div>
+      <nav style={{
+        borderBottom: "1px solid var(--border)",
+        background: "var(--cream)",
+        position: "sticky",
+        top: 0,
+        zIndex: 100,
       }}>
-        <Link to="/" style={{
-          fontSize: 20,
-          fontWeight: 700,
-          color: "var(--text)",
-          textDecoration: "none",
+        <div className="container" style={{
           display: "flex",
           alignItems: "center",
-          gap: 8,
+          justifyContent: "space-between",
+          height: 64,
         }}>
-          <span style={{ fontSize: 24 }}>&#9962;</span>
-          TravelForge
-        </Link>
-
-        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-          <Link to="/generate" style={{ fontSize: 15, fontWeight: 500 }}>
-            Plan a Trip
+          {/* Logo */}
+          <Link to="/" style={{
+            fontFamily: "var(--heading)",
+            fontSize: 24,
+            fontWeight: 700,
+            color: "var(--brown)",
+            textDecoration: "none",
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
+          }}>
+            <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+              <circle cx="16" cy="16" r="14" stroke="var(--teal)" strokeWidth="2.5" />
+              <ellipse cx="16" cy="16" rx="8" ry="14" stroke="var(--teal)" strokeWidth="1.5" />
+              <line x1="2" y1="16" x2="30" y2="16" stroke="var(--teal)" strokeWidth="1.5" />
+              <line x1="16" y1="2" x2="16" y2="30" stroke="var(--teal)" strokeWidth="1.5" />
+              <circle cx="16" cy="16" r="3" fill="var(--gold)" />
+            </svg>
+            TravelForge
           </Link>
-          {user ? (
-            <>
-              <Link to="/my-trips" style={{ fontSize: 15, fontWeight: 500 }}>
-                My Trips
-              </Link>
-              <button className="btn btn-secondary" onClick={signOut} style={{ padding: "6px 14px", fontSize: 14 }}>
+
+          {/* Desktop nav */}
+          <div style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 28,
+          }}>
+            <div style={{ display: "flex", gap: 24 }} className="desktop-nav">
+              {NAV_LINKS.map((link) => (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  style={{
+                    fontSize: 14,
+                    fontWeight: 500,
+                    color: location.pathname === link.to ? "var(--teal)" : "var(--text-secondary)",
+                    textDecoration: "none",
+                    letterSpacing: "0.2px",
+                    transition: "color 0.15s",
+                  }}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+
+            {user ? (
+              <button className="btn btn-secondary" onClick={signOut} style={{ padding: "8px 16px", fontSize: 13 }}>
                 Sign Out
               </button>
-            </>
-          ) : (
-            <button className="btn btn-primary" onClick={signInWithGoogle} style={{ padding: "6px 14px", fontSize: 14 }}>
-              Sign In
+            ) : (
+              <button className="btn btn-teal" onClick={signInWithGoogle} style={{ padding: "8px 16px", fontSize: 13 }}>
+                Sign In
+              </button>
+            )}
+
+            {/* Mobile menu toggle */}
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              style={{
+                display: "none",
+                background: "none",
+                border: "none",
+                fontSize: 24,
+                color: "var(--brown)",
+                padding: 4,
+              }}
+              className="mobile-toggle"
+              aria-label="Toggle menu"
+            >
+              {mobileOpen ? "\u2715" : "\u2630"}
             </button>
-          )}
+          </div>
         </div>
-      </div>
-    </nav>
+
+        {/* Mobile menu */}
+        {mobileOpen && (
+          <div style={{
+            borderTop: "1px solid var(--border)",
+            padding: "16px 24px",
+            display: "flex",
+            flexDirection: "column",
+            gap: 12,
+            background: "var(--cream)",
+          }}>
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                onClick={() => setMobileOpen(false)}
+                style={{
+                  fontSize: 16,
+                  fontWeight: 500,
+                  color: "var(--brown)",
+                  textDecoration: "none",
+                  padding: "8px 0",
+                }}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        )}
+      </nav>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .desktop-nav { display: none !important; }
+          .mobile-toggle { display: block !important; }
+        }
+      `}</style>
+    </>
   );
 }

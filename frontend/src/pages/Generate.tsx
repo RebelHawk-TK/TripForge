@@ -78,7 +78,7 @@ export default function Generate() {
 
   return (
     <div className="container" style={{ padding: "40px 24px", maxWidth: 640 }}>
-      <h1 style={{ fontSize: 32, fontWeight: 700, marginBottom: 8 }}>
+      <h1 style={{ fontFamily: "var(--heading)", fontSize: 32, fontWeight: 700, marginBottom: 8 }}>
         Plan your trip
       </h1>
       <p style={{ color: "var(--text-secondary)", marginBottom: 32 }}>

@@ -1,6 +1,15 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
+const DESTINATIONS = [
+  { name: "Paris", emoji: "\uD83C\uDDEB\uD83C\uDDF7", desc: "City of Light" },
+  { name: "Tokyo", emoji: "\uD83C\uDDEF\uD83C\uDDF5", desc: "Neon & Tradition" },
+  { name: "Bali", emoji: "\uD83C\uDDEE\uD83C\uDDE9", desc: "Island Paradise" },
+  { name: "Rome", emoji: "\uD83C\uDDEE\uD83C\uDDF9", desc: "Eternal City" },
+  { name: "Iceland", emoji: "\uD83C\uDDEE\uD83C\uDDF8", desc: "Fire & Ice" },
+  { name: "Morocco", emoji: "\uD83C\uDDF2\uD83C\uDDE6", desc: "Desert Colors" },
+];
+
 export default function Home() {
   const { user, signInWithGoogle } = useAuth();
 
@@ -8,31 +17,70 @@ export default function Home() {
     <div>
       {/* Hero */}
       <section style={{
-        padding: "80px 24px",
+        padding: "80px 24px 60px",
         textAlign: "center",
-        background: "linear-gradient(180deg, var(--primary-light) 0%, var(--bg) 100%)",
+        background: "linear-gradient(180deg, var(--cream-dark) 0%, var(--cream) 100%)",
+        position: "relative",
+        overflow: "hidden",
       }}>
-        <div className="container">
+        {/* Decorative globe lines */}
+        <div style={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: 600,
+          height: 600,
+          borderRadius: "50%",
+          border: "1px solid var(--border)",
+          opacity: 0.4,
+          pointerEvents: "none",
+        }} />
+        <div style={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: 400,
+          height: 400,
+          borderRadius: "50%",
+          border: "1px solid var(--border)",
+          opacity: 0.3,
+          pointerEvents: "none",
+        }} />
+
+        <div className="container" style={{ position: "relative", zIndex: 1 }}>
+          <p style={{
+            fontSize: 13,
+            fontWeight: 600,
+            textTransform: "uppercase",
+            letterSpacing: "2px",
+            color: "var(--gold)",
+            marginBottom: 16,
+          }}>
+            AI-Powered Travel Planning
+          </p>
           <h1 style={{
-            fontSize: 52,
+            fontFamily: "var(--heading)",
+            fontSize: "clamp(36px, 6vw, 56px)",
             fontWeight: 700,
-            letterSpacing: "-1.5px",
             lineHeight: 1.1,
             marginBottom: 20,
-            color: "var(--text)",
+            color: "var(--brown)",
           }}>
-            AI itineraries in seconds.<br />
-            Free.
+            Your next adventure,<br />
+            forged in seconds.
           </h1>
           <p style={{
-            fontSize: 19,
+            fontSize: 18,
             color: "var(--text-secondary)",
-            maxWidth: 560,
-            margin: "0 auto 36px",
-            lineHeight: 1.6,
+            maxWidth: 520,
+            margin: "0 auto 40px",
+            lineHeight: 1.7,
           }}>
-            Type a destination, get a personalized travel plan. Upgrade for
-            hotel and flight samples, or let us book the whole trip.
+            Tell us where you want to go. Our AI builds a personalized,
+            day-by-day itinerary with real restaurants, attractions, and
+            insider recommendations.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <Link to="/generate" className="btn btn-primary btn-large">
@@ -47,45 +95,97 @@ export default function Home() {
         </div>
       </section>
 
-      {/* How it works */}
+      {/* Destination cards */}
       <section style={{ padding: "64px 24px" }}>
         <div className="container">
-          <h2 style={{ fontSize: 32, fontWeight: 600, textAlign: "center", marginBottom: 48 }}>
-            How it works
-          </h2>
+          <div style={{ textAlign: "center", marginBottom: 40 }}>
+            <h2 style={{ fontSize: 32, fontWeight: 600, marginBottom: 8 }}>
+              Popular destinations
+            </h2>
+            <p style={{ color: "var(--text-secondary)", fontSize: 16 }}>
+              Click any destination to start planning
+            </p>
+          </div>
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))",
+            gap: 16,
+          }}>
+            {DESTINATIONS.map((dest) => (
+              <Link
+                key={dest.name}
+                to={`/generate?destination=${encodeURIComponent(dest.name)}`}
+                style={{
+                  padding: "24px 16px",
+                  borderRadius: "var(--radius-lg)",
+                  border: "1px solid var(--border)",
+                  background: "var(--white)",
+                  textAlign: "center",
+                  textDecoration: "none",
+                  transition: "all 0.2s",
+                  cursor: "pointer",
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.boxShadow = "var(--shadow)";
+                  e.currentTarget.style.transform = "translateY(-2px)";
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.boxShadow = "none";
+                  e.currentTarget.style.transform = "none";
+                }}
+              >
+                <div style={{ fontSize: 32, marginBottom: 8 }}>{dest.emoji}</div>
+                <div style={{ fontWeight: 600, color: "var(--brown)", fontSize: 15 }}>{dest.name}</div>
+                <div style={{ fontSize: 13, color: "var(--text-secondary)" }}>{dest.desc}</div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How it works */}
+      <section style={{ padding: "64px 24px", background: "var(--white)" }}>
+        <div className="container">
+          <div style={{ textAlign: "center", marginBottom: 48 }}>
+            <h2 style={{ fontSize: 32, fontWeight: 600 }}>
+              How TravelForge works
+            </h2>
+          </div>
           <div style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: 32,
+            gap: 40,
           }}>
             {[
-              { step: "1", title: "Tell us where", desc: "Pick a destination, dates, budget, and who's going." },
-              { step: "2", title: "AI builds your plan", desc: "Claude generates a day-by-day itinerary with real places and restaurants." },
-              { step: "3", title: "Upgrade if you want", desc: "Free gets you the plan. Basic adds flight and hotel samples. Enhanced books it all." },
+              {
+                icon: "\uD83C\uDF0D",
+                title: "Choose your destination",
+                desc: "Pick where you're going, your dates, budget, and who's traveling with you.",
+              },
+              {
+                icon: "\u2728",
+                title: "AI builds your plan",
+                desc: "Claude generates a day-by-day itinerary with real restaurants, landmarks, and local favorites.",
+              },
+              {
+                icon: "\uD83D\uDE80",
+                title: "Upgrade or book",
+                desc: "Free gets you the plan. Basic adds flight and hotel samples. Enhanced books it all for you.",
+              },
             ].map((item) => (
-              <div key={item.step} style={{
-                padding: 28,
-                borderRadius: "var(--radius)",
-                border: "1px solid var(--border)",
-                background: "white",
-              }}>
-                <div style={{
-                  width: 36,
-                  height: 36,
-                  borderRadius: "50%",
-                  background: "var(--primary)",
-                  color: "white",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
+              <div key={item.title} style={{ textAlign: "center" }}>
+                <div style={{ fontSize: 40, marginBottom: 16 }}>{item.icon}</div>
+                <h3 style={{
+                  fontFamily: "var(--heading)",
+                  fontSize: 20,
                   fontWeight: 600,
-                  fontSize: 15,
-                  marginBottom: 16,
+                  marginBottom: 8,
                 }}>
-                  {item.step}
-                </div>
-                <h3 style={{ fontSize: 18, fontWeight: 600, marginBottom: 8 }}>{item.title}</h3>
-                <p style={{ color: "var(--text-secondary)", fontSize: 15 }}>{item.desc}</p>
+                  {item.title}
+                </h3>
+                <p style={{ color: "var(--text-secondary)", fontSize: 15, lineHeight: 1.6 }}>
+                  {item.desc}
+                </p>
               </div>
             ))}
           </div>
@@ -93,15 +193,18 @@ export default function Home() {
       </section>
 
       {/* Pricing */}
-      <section style={{ padding: "64px 24px", background: "var(--bg-secondary)" }}>
+      <section style={{ padding: "64px 24px" }}>
         <div className="container">
-          <h2 style={{ fontSize: 32, fontWeight: 600, textAlign: "center", marginBottom: 48 }}>
-            Simple pricing
-          </h2>
+          <div style={{ textAlign: "center", marginBottom: 48 }}>
+            <h2 style={{ fontSize: 32, fontWeight: 600 }}>Simple, honest pricing</h2>
+            <p style={{ color: "var(--text-secondary)", marginTop: 8 }}>
+              Start free. Upgrade when you need more.
+            </p>
+          </div>
           <div style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: 24,
+            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+            gap: 20,
             maxWidth: 900,
             margin: "0 auto",
           }}>
@@ -109,55 +212,58 @@ export default function Home() {
               {
                 name: "Free",
                 price: "$0",
-                desc: "3 itineraries per day",
-                features: ["Day-by-day plan", "Real places and restaurants", "Shareable link"],
+                period: "forever",
+                features: ["3 itineraries per day", "Day-by-day plan with real places", "Shareable link"],
                 cta: "Start Free",
-                highlighted: false,
+                style: "secondary",
               },
               {
                 name: "Basic",
                 price: "$9",
-                desc: "per trip",
-                features: ["Everything in Free", "Flight and hotel samples", "Budget breakdown", "PDF export"],
+                period: "per trip",
+                features: ["Everything in Free", "Flight & hotel samples", "Budget breakdown", "PDF export"],
                 cta: "Get Basic",
-                highlighted: true,
+                style: "primary",
+                popular: true,
               },
               {
                 name: "Enhanced",
                 price: "$49",
-                desc: "per trip",
-                features: ["Everything in Basic", "Full booking coordination", "Personal concierge chat", "Unlimited revisions"],
+                period: "per trip",
+                features: ["Everything in Basic", "Full booking coordination", "Personal concierge", "Unlimited revisions"],
                 cta: "Go Enhanced",
-                highlighted: false,
+                style: "teal",
               },
             ].map((tier) => (
               <div key={tier.name} style={{
                 padding: 28,
-                borderRadius: "var(--radius)",
-                border: tier.highlighted ? "2px solid var(--primary)" : "1px solid var(--border)",
-                background: "white",
+                borderRadius: "var(--radius-lg)",
+                border: tier.popular ? "2px solid var(--gold)" : "1px solid var(--border)",
+                background: "var(--white)",
                 position: "relative",
               }}>
-                {tier.highlighted && (
+                {tier.popular && (
                   <div style={{
                     position: "absolute",
                     top: -12,
                     left: "50%",
                     transform: "translateX(-50%)",
-                    background: "var(--primary)",
-                    color: "white",
-                    fontSize: 12,
-                    fontWeight: 600,
-                    padding: "3px 12px",
+                    background: "var(--gold)",
+                    color: "var(--white)",
+                    fontSize: 11,
+                    fontWeight: 700,
+                    padding: "4px 14px",
                     borderRadius: 20,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.5px",
                   }}>
-                    Popular
+                    Most Popular
                   </div>
                 )}
-                <h3 style={{ fontSize: 20, fontWeight: 600, marginBottom: 4 }}>{tier.name}</h3>
-                <div style={{ marginBottom: 16 }}>
-                  <span style={{ fontSize: 36, fontWeight: 700 }}>{tier.price}</span>
-                  <span style={{ color: "var(--text-secondary)", fontSize: 14, marginLeft: 4 }}>{tier.desc}</span>
+                <h3 style={{ fontFamily: "var(--heading)", fontSize: 22, marginBottom: 4 }}>{tier.name}</h3>
+                <div style={{ marginBottom: 20 }}>
+                  <span style={{ fontSize: 40, fontWeight: 700, fontFamily: "var(--heading)" }}>{tier.price}</span>
+                  <span style={{ color: "var(--text-secondary)", fontSize: 14, marginLeft: 4 }}>{tier.period}</span>
                 </div>
                 <ul style={{
                   listStyle: "none",
@@ -165,17 +271,23 @@ export default function Home() {
                   marginBottom: 24,
                   display: "flex",
                   flexDirection: "column",
-                  gap: 8,
+                  gap: 10,
                 }}>
                   {tier.features.map((f) => (
-                    <li key={f} style={{ fontSize: 14, color: "var(--text-secondary)", display: "flex", alignItems: "center", gap: 8 }}>
-                      <span style={{ color: "var(--success)" }}>&#10003;</span> {f}
+                    <li key={f} style={{
+                      fontSize: 14,
+                      color: "var(--text-secondary)",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 8,
+                    }}>
+                      <span style={{ color: "var(--success)", fontWeight: 700 }}>\u2713</span> {f}
                     </li>
                   ))}
                 </ul>
                 <Link
                   to="/generate"
-                  className={`btn ${tier.highlighted ? "btn-primary" : "btn-secondary"}`}
+                  className={`btn btn-${tier.style}`}
                   style={{ width: "100%" }}
                 >
                   {tier.cta}
@@ -186,16 +298,79 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Email signup */}
+      <section style={{
+        padding: "48px 24px",
+        background: "var(--brown)",
+        color: "var(--cream)",
+      }}>
+        <div className="container" style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+          gap: 24,
+        }}>
+          <div>
+            <h3 style={{
+              fontFamily: "var(--heading)",
+              fontSize: 22,
+              color: "var(--cream)",
+              marginBottom: 4,
+            }}>
+              Get travel inspiration
+            </h3>
+            <p style={{ color: "rgba(250, 245, 240, 0.7)", fontSize: 14 }}>
+              AI-curated destination guides delivered weekly.
+            </p>
+          </div>
+          <form
+            onSubmit={(e) => e.preventDefault()}
+            style={{ display: "flex", gap: 8, flexWrap: "wrap" }}
+          >
+            <input
+              type="email"
+              placeholder="Your email address"
+              style={{
+                width: 280,
+                background: "rgba(250, 245, 240, 0.1)",
+                border: "1px solid rgba(250, 245, 240, 0.2)",
+                color: "var(--cream)",
+                borderRadius: "var(--radius)",
+              }}
+            />
+            <button className="btn btn-primary">Subscribe</button>
+          </form>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer style={{
         padding: "32px 24px",
         borderTop: "1px solid var(--border)",
-        textAlign: "center",
-        color: "var(--text-secondary)",
-        fontSize: 14,
+        background: "var(--cream)",
       }}>
-        <div className="container">
-          TravelForge &copy; {new Date().getFullYear()}. AI-powered travel planning from Greenville, SC.
+        <div className="container" style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexWrap: "wrap",
+          gap: 16,
+        }}>
+          <div style={{ color: "var(--text-secondary)", fontSize: 13 }}>
+            TravelForge &copy; {new Date().getFullYear()}. AI-powered travel planning from Greenville, SC.
+          </div>
+          <div style={{ display: "flex", gap: 20 }}>
+            {["Privacy", "Terms", "Contact"].map((link) => (
+              <a
+                key={link}
+                href="#"
+                style={{ color: "var(--text-secondary)", fontSize: 13, textDecoration: "none" }}
+              >
+                {link}
+              </a>
+            ))}
+          </div>
         </div>
       </footer>
     </div>

@@ -333,7 +333,7 @@ export default function Home() {
                       alignItems: "center",
                       gap: 8,
                     }}>
-                      <span style={{ color: "var(--success)", fontWeight: 700 }}>\u2713</span> {f}
+                      <span style={{ color: "var(--success)", fontWeight: 700 }}>&#10003;</span> {f}
                     </li>
                   ))}
                 </ul>

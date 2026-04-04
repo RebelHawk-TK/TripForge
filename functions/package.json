@@ -1,5 +1,5 @@
 {
-  "name": "tripforge-functions",
+  "name": "travelforge-functions",
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",

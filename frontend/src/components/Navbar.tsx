@@ -28,7 +28,7 @@ export default function Navbar() {
           gap: 8,
         }}>
           <span style={{ fontSize: 24 }}>&#9962;</span>
-          TripForge
+          TravelForge
         </Link>
 
         <div style={{ display: "flex", alignItems: "center", gap: 16 }}>

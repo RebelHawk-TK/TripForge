@@ -195,7 +195,7 @@ export default function Home() {
         fontSize: 14,
       }}>
         <div className="container">
-          TripForge &copy; {new Date().getFullYear()}. AI-powered travel planning from Greenville, SC.
+          TravelForge &copy; {new Date().getFullYear()}. AI-powered travel planning from Greenville, SC.
         </div>
       </footer>
     </div>

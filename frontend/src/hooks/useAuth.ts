@@ -4,8 +4,8 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   signOut as firebaseSignOut,
-  User,
 } from "firebase/auth";
+import type { User } from "firebase/auth";
 import { auth } from "../firebase";
 
 const googleProvider = new GoogleAuthProvider();

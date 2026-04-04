@@ -4,7 +4,7 @@ import { generateItinerary } from "../utils/anthropic";
 import { checkRateLimit } from "../utils/rateLimit";
 
 export const generateItineraryFn = onCall(
-  { maxInstances: 10, timeoutSeconds: 60 },
+  { maxInstances: 10, timeoutSeconds: 60, secrets: ["ANTHROPIC_API_KEY"] },
   async (request) => {
     if (!request.auth) {
       throw new HttpsError("unauthenticated", "Must be signed in.");
@@ -29,13 +29,23 @@ export const generateItineraryFn = onCall(
       );
     }
 
-    // Get user tier
+    // Get or create user doc
     const db = admin.firestore();
-    const userDoc = await db.doc(`users/${uid}`).get();
+    const userRef = db.doc(`users/${uid}`);
+    const userDoc = await userRef.get();
     if (!userDoc.exists) {
-      throw new HttpsError("not-found", "User profile not found.");
+      await userRef.set({
+        email: request.auth.token.email || "",
+        name: request.auth.token.name || "",
+        tier: "free",
+        preferences: {},
+        dailyItineraryCount: 0,
+        dailyCountResetAt: admin.firestore.Timestamp.now(),
+        createdAt: admin.firestore.Timestamp.now(),
+        updatedAt: admin.firestore.Timestamp.now(),
+      });
     }
-    const tier = (userDoc.data()!.tier || "free") as
+    const tier = (userDoc.data()?.tier || "free") as
       | "free"
       | "basic"
       | "enhanced";

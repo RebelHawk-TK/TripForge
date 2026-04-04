@@ -62,7 +62,14 @@ ${tierInstructions[params.tier]}`,
     ],
   });
 
-  const text =
+  let text =
     message.content[0].type === "text" ? message.content[0].text : "";
+
+  // Strip markdown code fences if Claude wraps the JSON
+  text = text.trim();
+  if (text.startsWith("```")) {
+    text = text.replace(/^```(?:json)?\s*\n?/, "").replace(/\n?```\s*$/, "");
+  }
+
   return JSON.parse(text);
 }

@@ -43,10 +43,8 @@ interface GenerateParams {
 function extractJSON(raw: string): Record<string, unknown> {
   let text = raw.trim();
 
-  // Strip markdown code fences
-  if (text.startsWith("```")) {
-    text = text.replace(/^```(?:json)?\s*\n?/, "").replace(/\n?```\s*$/, "");
-  }
+  // Strip markdown code fences (handle all variations)
+  text = text.replace(/^```[\w]*\s*\n?/, "").replace(/\n?\s*```\s*$/, "").trim();
 
   // Try direct parse first
   try {
@@ -55,37 +53,27 @@ function extractJSON(raw: string): Record<string, unknown> {
     // Fall through to extraction
   }
 
-  // Try to extract the JSON object from surrounding text
-  const match = text.match(/\{[\s\S]*\}/);
-  if (match) {
+  // Try to extract JSON between first { and last }
+  const firstBrace = text.indexOf("{");
+  const lastBrace = text.lastIndexOf("}");
+  if (firstBrace !== -1 && lastBrace > firstBrace) {
+    const extracted = text.substring(firstBrace, lastBrace + 1);
     try {
-      return JSON.parse(match[0]);
+      return JSON.parse(extracted);
     } catch {
-      // Fall through
+      // Try fixing trailing commas
+      const cleaned = extracted
+        .replace(/,\s*}/g, "}")
+        .replace(/,\s*]/g, "]");
+      try {
+        return JSON.parse(cleaned);
+      } catch {
+        // Fall through
+      }
     }
   }
 
-  // Try fixing common issues: trailing commas
-  const cleaned = text
-    .replace(/,\s*}/g, "}")
-    .replace(/,\s*]/g, "]");
-  try {
-    return JSON.parse(cleaned);
-  } catch {
-    // Fall through
-  }
-
-  // Try extracting + cleaning
-  const match2 = cleaned.match(/\{[\s\S]*\}/);
-  if (match2) {
-    try {
-      return JSON.parse(match2[0]);
-    } catch {
-      // Fall through
-    }
-  }
-
-  throw new Error(`Could not parse JSON from AI response. Raw length: ${raw.length}, starts with: ${raw.substring(0, 100)}`);
+  throw new Error(`Could not parse JSON from AI response. Raw length: ${raw.length}, first 200 chars: ${raw.substring(0, 200)}`);
 }
 
 export async function generateItinerary(params: GenerateParams): Promise<Record<string, unknown>> {

@@ -7,6 +7,24 @@ interface Activity {
   location: string;
   estimatedCost?: number;
   coordinates?: { lat: number; lng: number };
+  bookingUrl?: string;
+}
+
+type TimeSlot = "morning" | "afternoon" | "evening" | "lodging";
+
+function getBookingLink(activity: Activity, timeSlot: TimeSlot, destination: string): { url: string; label: string } | null {
+  if (!activity.name) return null;
+  if (activity.bookingUrl) return { url: activity.bookingUrl, label: "Book Now" };
+
+  const q = encodeURIComponent(`${activity.name} ${activity.location || destination}`);
+  switch (timeSlot) {
+    case "lodging":
+      return { url: `https://www.booking.com/searchresults.html?ss=${q}`, label: "Find on Booking.com" };
+    case "evening":
+      return { url: `https://www.google.com/maps/search/${q}`, label: "View on Google Maps" };
+    default:
+      return { url: `https://www.viator.com/searchResults/all?text=${q}`, label: "Find on Viator" };
+  }
 }
 
 interface DayPlan {
@@ -15,6 +33,7 @@ interface DayPlan {
   morning: Activity;
   afternoon: Activity;
   evening: Activity;
+  lodging?: Activity;
   estimatedCost?: number;
 }
 
@@ -32,12 +51,18 @@ function EditableActivityCard({
   activity,
   editing,
   onChange,
+  timeSlot,
+  destination,
 }: {
   label: string;
   activity: Activity;
   editing: boolean;
   onChange: (updated: Activity) => void;
+  timeSlot: TimeSlot;
+  destination: string;
 }) {
+  const bookingLink = getBookingLink(activity, timeSlot, destination);
+
   if (editing) {
     return (
       <div style={{
@@ -77,6 +102,13 @@ function EditableActivityCard({
           style={{ fontSize: 13, padding: "6px 8px" }}
           placeholder="Location"
         />
+        <input
+          value={activity.bookingUrl || ""}
+          onChange={(e) => onChange({ ...activity, bookingUrl: e.target.value || undefined })}
+          style={{ fontSize: 13, padding: "6px 8px" }}
+          placeholder="Booking URL (optional — overrides default link)"
+          type="url"
+        />
       </div>
     );
   }
@@ -112,6 +144,23 @@ function EditableActivityCard({
           <span> &middot; ~${activity.estimatedCost}</span>
         )}
       </div>
+      {bookingLink && (
+        <a
+          href={bookingLink.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: "inline-block",
+            marginTop: 8,
+            fontSize: 13,
+            fontWeight: 500,
+            color: "var(--teal)",
+            textDecoration: "none",
+          }}
+        >
+          {bookingLink.label} {"\u2192"}
+        </a>
+      )}
     </div>
   );
 }
@@ -128,9 +177,15 @@ export default function ItineraryDisplay({ itinerary, onUpdate }: Props) {
   const [copied, setCopied] = useState(false);
   const totalCost = days.reduce((sum, day) => sum + (day.estimatedCost || 0), 0);
 
-  const updateActivity = (dayIdx: number, timeSlot: "morning" | "afternoon" | "evening", updated: Activity) => {
+  const updateActivity = (dayIdx: number, timeSlot: "morning" | "afternoon" | "evening" | "lodging", updated: Activity) => {
     const newDays = [...days];
     newDays[dayIdx] = { ...newDays[dayIdx], [timeSlot]: updated };
+    setDays(newDays);
+  };
+
+  const updateDate = (dayIdx: number, newDate: string) => {
+    const newDays = [...days];
+    newDays[dayIdx] = { ...newDays[dayIdx], date: newDate };
     setDays(newDays);
   };
 
@@ -201,7 +256,7 @@ export default function ItineraryDisplay({ itinerary, onUpdate }: Props) {
               onClick={() => setEditing(true)}
               style={{ padding: "8px 14px", fontSize: 13 }}
             >
-              \u270F\uFE0F Edit
+              {"\u270F\uFE0F"} Edit
             </button>
           )}
         </div>
@@ -225,10 +280,19 @@ export default function ItineraryDisplay({ itinerary, onUpdate }: Props) {
               <h2 style={{ fontFamily: "var(--heading)", fontSize: 18, fontWeight: 600 }}>
                 Day {day.dayNumber}
               </h2>
-              {day.date && (
-                <span style={{ fontSize: 14, color: "var(--text-secondary)" }}>
-                  {day.date}
-                </span>
+              {editing ? (
+                <input
+                  type="date"
+                  value={day.date}
+                  onChange={(e) => updateDate(dayIdx, e.target.value)}
+                  style={{ fontSize: 14, padding: "4px 8px", border: "2px solid var(--gold)", borderRadius: "var(--radius)" }}
+                />
+              ) : (
+                day.date && (
+                  <span style={{ fontSize: 14, color: "var(--text-secondary)" }}>
+                    {day.date}
+                  </span>
+                )
               )}
               {day.estimatedCost != null && (
                 <span style={{ fontSize: 14, color: "var(--text-secondary)", marginLeft: "auto" }}>
@@ -241,16 +305,31 @@ export default function ItineraryDisplay({ itinerary, onUpdate }: Props) {
               gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
               gap: 12,
             }}>
-              {(["morning", "afternoon", "evening"] as const).map((timeSlot) => (
+              {(["morning", "afternoon", "evening"] as const).map((slot) => (
                 <EditableActivityCard
-                  key={timeSlot}
-                  label={timeSlot.charAt(0).toUpperCase() + timeSlot.slice(1)}
-                  activity={day[timeSlot]}
+                  key={slot}
+                  label={slot.charAt(0).toUpperCase() + slot.slice(1)}
+                  activity={day[slot]}
                   editing={editing}
-                  onChange={(updated) => updateActivity(dayIdx, timeSlot, updated)}
+                  onChange={(updated) => updateActivity(dayIdx, slot, updated)}
+                  timeSlot={slot}
+                  destination={itinerary.destination}
                 />
               ))}
             </div>
+            {/* Lodging */}
+            {(day.lodging || editing) && (
+              <div style={{ marginTop: 12 }}>
+                <EditableActivityCard
+                  label={"\uD83C\uDFE8 Lodging"}
+                  activity={day.lodging || { name: "", description: "", location: "" }}
+                  editing={editing}
+                  onChange={(updated) => updateActivity(dayIdx, "lodging", updated)}
+                  timeSlot="lodging"
+                  destination={itinerary.destination}
+                />
+              </div>
+            )}
           </div>
         ))}
       </div>

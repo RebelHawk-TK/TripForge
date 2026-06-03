@@ -10,9 +10,10 @@ interface ItineraryResult {
   days: Array<{
     dayNumber: number;
     date: string;
-    morning: { name: string; description?: string; location: string; estimatedCost?: number };
-    afternoon: { name: string; description?: string; location: string; estimatedCost?: number };
-    evening: { name: string; description?: string; location: string; estimatedCost?: number };
+    morning: { name: string; description?: string; location: string; estimatedCost?: number; bookingUrl?: string };
+    afternoon: { name: string; description?: string; location: string; estimatedCost?: number; bookingUrl?: string };
+    evening: { name: string; description?: string; location: string; estimatedCost?: number; bookingUrl?: string };
+    lodging?: { name: string; description?: string; location: string; estimatedCost?: number; bookingUrl?: string };
     estimatedCost?: number;
   }>;
 }
@@ -55,6 +56,8 @@ export default function Generate() {
   const [travelerType, setTravelerType] = useState("couple");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [arrivalTime, setArrivalTime] = useState("");
+  const [departureTime, setDepartureTime] = useState("");
   const [activities, setActivities] = useState<string[]>([]);
   const [pace, setPace] = useState("moderate");
   const [vibe, setVibe] = useState("mix");
@@ -113,6 +116,8 @@ export default function Generate() {
           activities: selectedActivities,
           pace: selectedPace,
           accommodationStyle: selectedVibe,
+          arrivalTime: arrivalTime || undefined,
+          departureTime: departureTime || undefined,
           specialRequests: specialRequests || undefined,
         },
       });
@@ -184,6 +189,40 @@ export default function Generate() {
               onChange={(e) => setEndDate(e.target.value)}
               required
             />
+          </div>
+        </div>
+
+        {/* Arrival & departure times */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+          <div>
+            <label htmlFor="arrivalTime">Arrival time <span style={{ fontWeight: 400, color: "var(--text-secondary)" }}>(first day)</span></label>
+            <select
+              id="arrivalTime"
+              value={arrivalTime}
+              onChange={(e) => setArrivalTime(e.target.value)}
+            >
+              <option value="">Not sure yet</option>
+              <option value="early-morning">Early morning (before 9 AM)</option>
+              <option value="morning">Morning (9 AM - 12 PM)</option>
+              <option value="afternoon">Afternoon (12 - 5 PM)</option>
+              <option value="evening">Evening (after 5 PM)</option>
+              <option value="night-before">Arriving night before</option>
+            </select>
+          </div>
+          <div>
+            <label htmlFor="departureTime">Departure time <span style={{ fontWeight: 400, color: "var(--text-secondary)" }}>(last day)</span></label>
+            <select
+              id="departureTime"
+              value={departureTime}
+              onChange={(e) => setDepartureTime(e.target.value)}
+            >
+              <option value="">Not sure yet</option>
+              <option value="early-morning">Early morning (before 9 AM)</option>
+              <option value="morning">Morning (9 AM - 12 PM)</option>
+              <option value="afternoon">Afternoon (12 - 5 PM)</option>
+              <option value="evening">Evening (after 5 PM)</option>
+              <option value="next-morning">Leaving next morning</option>
+            </select>
           </div>
         </div>
 

@@ -56,11 +56,15 @@ JSON schema:
     "morning": { "name": "Activity Name", "description": "Brief.", "location": "Area", "estimatedCost": 0 },
     "afternoon": { "name": "...", "description": "...", "location": "...", "estimatedCost": 0 },
     "evening": { "name": "...", "description": "...", "location": "...", "estimatedCost": 0 },
+    "lodging": { "name": "Hotel Name", "description": "Brief.", "location": "Neighborhood", "estimatedCost": 150 },
     "estimatedCost": 0
   }]
 }
 
-Be specific — real restaurant names, real attractions, real neighborhoods.`;
+Be specific — real restaurant names, real hotel names, real attractions, real neighborhoods. For lodging, recommend a specific hotel or Airbnb area for each night.
+
+If arrival time is provided, adjust Day 1 accordingly — skip morning/afternoon activities if arriving late. Use "Arrive & check in" as the activity for time slots before the traveler arrives.
+If departure time is provided, adjust the last day accordingly — skip afternoon/evening activities if departing early. Use "Check out & depart" as the activity for time slots after departure.`;
 function extractJSON(raw) {
     let text = raw.trim();
     // Strip markdown code fences
@@ -130,6 +134,10 @@ Respond with ONLY valid JSON. Start with { end with }. No markdown fences. No ot
     const rawText = message.content[0].type === "text" ? message.content[0].text : "";
     const stopReason = message.stop_reason;
     logger.info(`Claude response: ${rawText.length} chars, stop_reason=${stopReason}`);
+    // Haiku 4.5 pricing: $1/M input tokens, $5/M output tokens
+    const { input_tokens, output_tokens } = message.usage;
+    const costUsd = (input_tokens * 1 + output_tokens * 5) / 1_000_000;
+    logger.info(`Token usage: ${input_tokens} in, ${output_tokens} out, $${costUsd.toFixed(5)} (tier=${params.tier})`);
     if (stopReason === "max_tokens") {
         logger.error("Response truncated by max_tokens! Last 100 chars:", rawText.substring(rawText.length - 100));
     }

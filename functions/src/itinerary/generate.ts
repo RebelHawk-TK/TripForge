@@ -71,8 +71,12 @@ export const generateItineraryFn = onCall(
         }
       } catch (err) {
         if (err instanceof HttpsError) throw err;
+        // Fail closed: if we can't verify the daily limit, don't generate (and don't spend on the API).
         logger.error("Rate limit check error:", err);
-        // Don't block on rate limit errors — let them through
+        throw new HttpsError(
+          "unavailable",
+          "Couldn't verify your daily limit right now. Please try again in a moment."
+        );
       }
     }
 

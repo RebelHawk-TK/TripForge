@@ -49,6 +49,7 @@ exports.listUsersFn = (0, https_1.onCall)(async (request) => {
             email: u.email || "",
             name: u.name || "",
             approved: u.approved === true || (0, auth_1.isAdminEmail)(u.email),
+            denied: u.denied === true,
             tier: u.tier || "free",
             createdAt: u.createdAt?.toDate?.()?.toISOString() || null,
         };
@@ -58,16 +59,19 @@ exports.listUsersFn = (0, https_1.onCall)(async (request) => {
 // Approve or revoke a user (admin only).
 exports.setUserApprovalFn = (0, https_1.onCall)(async (request) => {
     const adminEmail = (0, auth_1.assertAdmin)(request);
-    const { uid, approved } = request.data || {};
+    const { uid, approved, denied } = request.data || {};
     if (typeof uid !== "string" || typeof approved !== "boolean") {
         throw new https_1.HttpsError("invalid-argument", "uid (string) and approved (boolean) are required.");
     }
+    // Reject = explicitly denied (drops out of the pending list). Approving always clears denial.
+    const isDenied = approved ? false : denied === true;
     const db = admin.firestore();
     await db.doc(`users/${uid}`).update({
         approved,
+        denied: isDenied,
         approvedAt: admin.firestore.Timestamp.now(),
         approvedBy: adminEmail,
     });
-    return { uid, approved };
+    return { uid, approved, denied: isDenied };
 });
 //# sourceMappingURL=users.js.map

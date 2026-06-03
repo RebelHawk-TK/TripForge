@@ -8,9 +8,12 @@ interface AdminUser {
   email: string;
   name: string;
   approved: boolean;
+  denied: boolean;
   tier: string;
   createdAt: string | null;
 }
+
+type Decision = "approved" | "pending" | "denied";
 
 export default function Admin() {
   const { user, loading: authLoading, signInWithGoogle } = useAuth();
@@ -39,13 +42,15 @@ export default function Admin() {
     else setLoading(false);
   }, [authLoading, user, load]);
 
-  const setApproval = async (uid: string, approved: boolean) => {
+  const decide = async (uid: string, status: Decision) => {
     setBusy(uid);
     setError("");
     try {
       const fn = httpsCallable(functions, "setUserApproval");
-      await fn({ uid, approved });
-      setUsers((prev) => prev.map((u) => (u.uid === uid ? { ...u, approved } : u)));
+      const approved = status === "approved";
+      const denied = status === "denied";
+      await fn({ uid, approved, denied });
+      setUsers((prev) => prev.map((u) => (u.uid === uid ? { ...u, approved, denied } : u)));
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Action failed.");
     } finally {
@@ -67,10 +72,23 @@ export default function Admin() {
     );
   }
 
-  const pending = users.filter((u) => !u.approved);
+  const pending = users.filter((u) => !u.approved && !u.denied);
   const approved = users.filter((u) => u.approved);
+  const denied = users.filter((u) => u.denied && !u.approved);
 
-  const row = (u: AdminUser, action: "approve" | "revoke") => (
+  const actionBtn = (uid: string, label: string, status: Decision, cls: string) => (
+    <button
+      key={label}
+      className={`btn ${cls}`}
+      disabled={busy === uid}
+      onClick={() => decide(uid, status)}
+      style={{ fontSize: 13, padding: "8px 14px" }}
+    >
+      {busy === uid ? "…" : label}
+    </button>
+  );
+
+  const row = (u: AdminUser, kind: "pending" | "approved" | "denied") => (
     <div
       key={u.uid}
       style={{
@@ -90,14 +108,16 @@ export default function Admin() {
           {u.createdAt ? ` · joined ${new Date(u.createdAt).toLocaleDateString()}` : ""}
         </div>
       </div>
-      <button
-        className={action === "approve" ? "btn btn-primary" : "btn btn-secondary"}
-        disabled={busy === u.uid}
-        onClick={() => setApproval(u.uid, action === "approve")}
-        style={{ fontSize: 13, padding: "8px 14px" }}
-      >
-        {busy === u.uid ? "…" : action === "approve" ? "Approve" : "Revoke"}
-      </button>
+      <div style={{ display: "flex", gap: 8 }}>
+        {kind === "pending" && (
+          <>
+            {actionBtn(u.uid, "Approve", "approved", "btn-primary")}
+            {actionBtn(u.uid, "Reject", "denied", "btn-secondary")}
+          </>
+        )}
+        {kind === "approved" && actionBtn(u.uid, "Revoke", "pending", "btn-secondary")}
+        {kind === "denied" && actionBtn(u.uid, "Approve", "approved", "btn-primary")}
+      </div>
     </div>
   );
 
@@ -126,22 +146,25 @@ export default function Admin() {
         </div>
       )}
 
-      <h2 style={{ fontSize: 18, fontWeight: 600, margin: "8px 0 12px" }}>
-        Pending ({pending.length})
-      </h2>
+      <h2 style={{ fontSize: 18, fontWeight: 600, margin: "8px 0 12px" }}>Pending ({pending.length})</h2>
       {pending.length === 0 ? (
         <p style={{ color: "var(--text-secondary)", marginBottom: 24 }}>No one waiting.</p>
       ) : (
-        pending.map((u) => row(u, "approve"))
+        pending.map((u) => row(u, "pending"))
       )}
 
-      <h2 style={{ fontSize: 18, fontWeight: 600, margin: "24px 0 12px" }}>
-        Approved ({approved.length})
-      </h2>
+      <h2 style={{ fontSize: 18, fontWeight: 600, margin: "24px 0 12px" }}>Approved ({approved.length})</h2>
       {approved.length === 0 ? (
         <p style={{ color: "var(--text-secondary)" }}>None yet.</p>
       ) : (
-        approved.map((u) => row(u, "revoke"))
+        approved.map((u) => row(u, "approved"))
+      )}
+
+      {denied.length > 0 && (
+        <>
+          <h2 style={{ fontSize: 18, fontWeight: 600, margin: "24px 0 12px" }}>Rejected ({denied.length})</h2>
+          {denied.map((u) => row(u, "denied"))}
+        </>
       )}
     </div>
   );

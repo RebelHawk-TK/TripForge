@@ -3,6 +3,7 @@ import * as admin from "firebase-admin";
 import { generateItinerary } from "../utils/anthropic";
 import { checkRateLimit } from "../utils/rateLimit";
 import * as logger from "firebase-functions/logger";
+import { isAdminEmail } from "../admin/auth";
 
 export const generateItineraryFn = onCall(
   { maxInstances: 10, timeoutSeconds: 120, secrets: ["ANTHROPIC_API_KEY"] },
@@ -30,28 +31,50 @@ export const generateItineraryFn = onCall(
       );
     }
 
-    // Get or create user doc
+    // Get or create user doc + approval gate
     const db = admin.firestore();
+    const email = request.auth.token.email || "";
+    const userIsAdmin = isAdminEmail(email);
     let tier: "free" | "basic" | "enhanced" = "free";
 
     try {
       const userRef = db.doc(`users/${uid}`);
       const userDoc = await userRef.get();
       if (!userDoc.exists) {
+        // New sign-ups are pending until an admin approves them (admins auto-approved).
         await userRef.set({
-          email: request.auth.token.email || "",
+          email,
           name: request.auth.token.name || "",
           tier: "free",
+          approved: userIsAdmin,
           preferences: {},
           dailyItineraryCount: 0,
           dailyCountResetAt: admin.firestore.Timestamp.now(),
           createdAt: admin.firestore.Timestamp.now(),
           updatedAt: admin.firestore.Timestamp.now(),
         });
+        if (!userIsAdmin) {
+          throw new HttpsError(
+            "permission-denied",
+            "Thanks for signing up! Your account is pending approval — you'll be able to generate itineraries once it's approved."
+          );
+        }
       } else {
-        tier = (userDoc.data()?.tier || "free") as typeof tier;
+        const data = userDoc.data();
+        tier = (data?.tier || "free") as typeof tier;
+        if (!userIsAdmin && data?.approved !== true) {
+          // Backfill the field so the user appears in the admin approval list.
+          if (data?.approved === undefined) {
+            await userRef.update({ approved: false });
+          }
+          throw new HttpsError(
+            "permission-denied",
+            "Your account is pending approval — you'll be able to generate itineraries once it's approved."
+          );
+        }
       }
     } catch (err) {
+      if (err instanceof HttpsError) throw err;
       logger.error("Firestore user doc error:", err);
       throw new HttpsError(
         "internal",

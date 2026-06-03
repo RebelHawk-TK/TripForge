@@ -33,14 +33,41 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.setUserApproval = exports.listUsers = exports.generateItinerary = void 0;
+exports.setUserApprovalFn = exports.listUsersFn = void 0;
+const https_1 = require("firebase-functions/v2/https");
 const admin = __importStar(require("firebase-admin"));
-admin.initializeApp();
-// Itinerary generation (also handles first-time user creation)
-var generate_1 = require("./itinerary/generate");
-Object.defineProperty(exports, "generateItinerary", { enumerable: true, get: function () { return generate_1.generateItineraryFn; } });
-// Admin: user approval dashboard
-var users_1 = require("./admin/users");
-Object.defineProperty(exports, "listUsers", { enumerable: true, get: function () { return users_1.listUsersFn; } });
-Object.defineProperty(exports, "setUserApproval", { enumerable: true, get: function () { return users_1.setUserApprovalFn; } });
-//# sourceMappingURL=index.js.map
+const auth_1 = require("./auth");
+// List all users (admin only) — powers the approval dashboard.
+exports.listUsersFn = (0, https_1.onCall)(async (request) => {
+    (0, auth_1.assertAdmin)(request);
+    const db = admin.firestore();
+    const snap = await db.collection("users").limit(500).get();
+    const users = snap.docs.map((d) => {
+        const u = d.data();
+        return {
+            uid: d.id,
+            email: u.email || "",
+            name: u.name || "",
+            approved: u.approved === true || (0, auth_1.isAdminEmail)(u.email),
+            tier: u.tier || "free",
+            createdAt: u.createdAt?.toDate?.()?.toISOString() || null,
+        };
+    });
+    return { users };
+});
+// Approve or revoke a user (admin only).
+exports.setUserApprovalFn = (0, https_1.onCall)(async (request) => {
+    const adminEmail = (0, auth_1.assertAdmin)(request);
+    const { uid, approved } = request.data || {};
+    if (typeof uid !== "string" || typeof approved !== "boolean") {
+        throw new https_1.HttpsError("invalid-argument", "uid (string) and approved (boolean) are required.");
+    }
+    const db = admin.firestore();
+    await db.doc(`users/${uid}`).update({
+        approved,
+        approvedAt: admin.firestore.Timestamp.now(),
+        approvedBy: adminEmail,
+    });
+    return { uid, approved };
+});
+//# sourceMappingURL=users.js.map

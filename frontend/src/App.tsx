@@ -8,6 +8,7 @@ import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import About from "./pages/About";
 import SharedTrip from "./pages/SharedTrip";
+import Admin from "./pages/Admin";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/about" element={<About />} />
         <Route path="/trip/:tripId" element={<SharedTrip />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </>
   );

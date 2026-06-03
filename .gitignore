@@ -137,3 +137,6 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# Large deploy-only media (Sabrina-book trailer, served at /share/ — not TravelForge source)
+frontend/public/share/

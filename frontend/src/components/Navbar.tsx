@@ -8,6 +8,7 @@ const NAV_LINKS = [
   { to: "/blog", label: "Blog" },
   { to: "/about", label: "About" },
   { to: "/my-trips", label: "My Trips" },
+  { to: "/library", label: "Vault" },
 ];
 
 export default function Navbar() {

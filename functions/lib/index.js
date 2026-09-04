@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.setUserApproval = exports.listUsers = exports.generateItinerary = void 0;
+exports.listVaultDocs = exports.serveVaultDocFn = exports.sessionLogoutFn = exports.sessionLoginFn = exports.setUserApproval = exports.listUsers = exports.generateItinerary = void 0;
 const admin = __importStar(require("firebase-admin"));
 admin.initializeApp();
 // Itinerary generation (also handles first-time user creation)
@@ -43,4 +43,12 @@ Object.defineProperty(exports, "generateItinerary", { enumerable: true, get: fun
 var users_1 = require("./admin/users");
 Object.defineProperty(exports, "listUsers", { enumerable: true, get: function () { return users_1.listUsersFn; } });
 Object.defineProperty(exports, "setUserApproval", { enumerable: true, get: function () { return users_1.setUserApprovalFn; } });
+// Private travel-doc vault (gated behind login + approval)
+var session_1 = require("./vault/session");
+Object.defineProperty(exports, "sessionLoginFn", { enumerable: true, get: function () { return session_1.sessionLoginFn; } });
+Object.defineProperty(exports, "sessionLogoutFn", { enumerable: true, get: function () { return session_1.sessionLogoutFn; } });
+var serve_1 = require("./vault/serve");
+Object.defineProperty(exports, "serveVaultDocFn", { enumerable: true, get: function () { return serve_1.serveVaultDocFn; } });
+var list_1 = require("./vault/list");
+Object.defineProperty(exports, "listVaultDocs", { enumerable: true, get: function () { return list_1.listVaultDocsFn; } });
 //# sourceMappingURL=index.js.map

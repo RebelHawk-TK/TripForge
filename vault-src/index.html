@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A private index of open travel plans — trips being planned, each with a full day-by-day dossier.">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#9992;</text></svg>">
+<title>Open Travel Plans</title>
+<style>
+  :root {
+    --paper: #F4F3F0; --card: #FCFBF8; --ink: #201C24; --ink-soft: #524C58;
+    --ink-faint: #857E8B; --line: #DEDAD4; --line-soft: #EAE7E1;
+    --pine: #2C5140; --whisky: #9C6B26;
+    --display: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, sans-serif;
+    --mono: ui-monospace, "SF Mono", "Menlo", "Consolas", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #12140F; --card: #191C17; --ink: #ECEAE4; --ink-soft: #ADAAA2;
+      --ink-faint: #7B7871; --line: #282B24; --line-soft: #20231D;
+      --pine: #74B392; --whisky: #CE9F55;
+    }
+  }
+  :root[data-theme="light"] {
+    --paper: #F4F3F0; --card: #FCFBF8; --ink: #201C24; --ink-soft: #524C58;
+    --ink-faint: #857E8B; --line: #DEDAD4; --line-soft: #EAE7E1;
+    --pine: #2C5140; --whisky: #9C6B26;
+  }
+  :root[data-theme="dark"] {
+    --paper: #12140F; --card: #191C17; --ink: #ECEAE4; --ink-soft: #ADAAA2;
+    --ink-faint: #7B7871; --line: #282B24; --line-soft: #20231D;
+    --pine: #74B392; --whisky: #CE9F55;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 780px; margin: 0 auto; padding: 84px 24px 80px; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.12; text-wrap: balance; }
+  a { color: var(--pine); text-underline-offset: 3px; }
+  .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint); margin: 0 0 20px; }
+  h1 { font-size: clamp(40px, 8vw, 72px); letter-spacing: -0.02em; margin: 0; line-height: 0.98; }
+  .sub { font-size: clamp(16px, 2.4vw, 20px); font-style: italic; color: var(--ink-soft); margin: 20px 0 0; max-width: 46ch; }
+  .theme-btn { position: fixed; top: 16px; right: 16px; z-index: 20; font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; background: var(--card); color: var(--ink-soft); border: 1px solid var(--line); border-radius: 999px; padding: 7px 13px; cursor: pointer; }
+  .theme-btn:hover { border-color: var(--pine); color: var(--ink); }
+
+  .grouplabel { display: flex; align-items: baseline; gap: 14px; margin: 56px 0 20px; }
+  .grouplabel h2 { font-size: 15px; font-family: var(--mono); font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); margin: 0; }
+  .grouplabel .rule { flex: 1; height: 1px; background: var(--line); align-self: center; }
+
+  .plans { display: grid; gap: 14px; }
+  .plan { display: block; text-decoration: none; color: var(--ink); border: 1px solid var(--line); border-radius: 14px; padding: 24px 26px; background: var(--card); transition: border-color .15s, transform .15s; }
+  .plan:hover { border-color: var(--pine); transform: translateY(-2px); }
+  .plan .head { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; }
+  .plan .name { font-family: var(--display); font-size: 26px; font-weight: 600; letter-spacing: -0.01em; }
+  .plan .arr { color: var(--pine); font-size: 20px; }
+  .plan .dates { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--whisky); margin-top: 8px; }
+  .plan .desc { color: var(--ink-soft); font-size: 15px; margin: 10px 0 0; }
+  .plan .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .chip { font-family: var(--mono); font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-faint); border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; }
+  .chip.status { color: var(--pine); border-color: color-mix(in srgb, var(--pine) 40%, transparent); }
+
+  footer { font-size: 13px; color: var(--ink-faint); border-top: 1px solid var(--line); padding-top: 22px; margin-top: 64px; line-height: 1.6; }
+</style>
+</head>
+<body>
+<button class="theme-btn" id="themeBtn" aria-label="Toggle light and dark theme">Theme</button>
+<div class="wrap">
+  <p class="eyebrow">Private · Travel Vault</p>
+  <h1>Open Travel Plans</h1>
+  <p class="sub">Trips being planned — each links to a full day-by-day dossier. Signed-in, approved accounts only.</p>
+
+  <div class="grouplabel"><h2>In planning</h2><span class="rule"></span></div>
+  <div class="plans">
+
+    <a class="plan" href="/vault/disney-oct-2026.html">
+      <div class="head">
+        <span class="name">Disney · October 2026</span>
+        <span class="arr">→</span>
+      </div>
+      <div class="dates">Sun 18 – Thu 22 Oct 2026 · 4 nights</div>
+      <p class="desc">Two Epcot days from Disney's Riviera Resort, a round of golf, and a day at Universal's Epic Universe. Resort and Epic Universe booked; golf, flights, and dining still open.</p>
+      <div class="meta">
+        <span class="chip status">Planning</span>
+        <span class="chip">Riviera Resort</span>
+        <span class="chip">Epcot</span>
+        <span class="chip">Epic Universe</span>
+      </div>
+    </a>
+
+    <a class="plan" href="/vault/scotland-2027.html">
+      <div class="head">
+        <span class="name">Scotland · Spring 2027</span>
+        <span class="arr">→</span>
+      </div>
+      <div class="dates">Fri 30 Apr – Sat 8 May 2027 · 8 nights</div>
+      <p class="desc">Edinburgh, the Highlands and Loch Ness, and Glasgow — a day-by-day, fully priced itinerary with one rental-car loop and a number on every line.</p>
+      <div class="meta">
+        <span class="chip status">Priced dossier</span>
+        <span class="chip">Edinburgh</span>
+        <span class="chip">Inverness</span>
+        <span class="chip">Glasgow</span>
+      </div>
+    </a>
+
+  </div>
+
+  <footer>
+    Each dossier plans and stages the trip; reservations and payments are yours to place. Documents are private to this vault and open only for signed-in, approved accounts.
+  </footer>
+</div>
+<script>
+  (function () {
+    var btn = document.getElementById('themeBtn');
+    var root = document.documentElement;
+    btn.addEventListener('click', function () {
+      var cur = root.getAttribute('data-theme');
+      if (!cur) { cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+      root.setAttribute('data-theme', cur === 'dark' ? 'light' : 'dark');
+    });
+  })();
+</script>
+</body>
+</html>

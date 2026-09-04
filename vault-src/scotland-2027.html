@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="An 8-night Scotland itinerary for spring 2027 — Edinburgh, the Highlands and Loch Ness, and Glasgow — day by day, with prices and a full budget.">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scotland in 8 Nights — History, Trad Music & Local Tables">
+<meta property="og:description" content="A day-by-day, priced spring itinerary: Edinburgh, the Highlands & Loch Ness, and Glasgow.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#127984;</text></svg>">
+<title>Scotland 2027 — Day by Day, Priced</title>
+<style>
+  :root {
+    --paper: #F4F5F1; --card: #FBFBF9; --ink: #1C241F; --ink-soft: #4C564E;
+    --ink-faint: #7A8479; --line: #DADCD2; --line-soft: #E7E8E1;
+    --pine: #2C5140; --pine-bright: #3A6B54; --whisky: #9C6B26; --heather: #6F5C86; --sea: #37697A;
+    --shadow: 20px 40px 80px -40px rgba(28, 36, 31, 0.28);
+    --display: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, sans-serif;
+    --mono: ui-monospace, "SF Mono", "Menlo", "Consolas", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #12160F; --card: #191F19; --ink: #ECEFE7; --ink-soft: #AEB6AC;
+      --ink-faint: #78827A; --line: #29312A; --line-soft: #212821;
+      --pine: #74B392; --pine-bright: #86C4A2; --whisky: #CE9F55; --heather: #AD9CC0; --sea: #6FAABB;
+      --shadow: 20px 40px 80px -40px rgba(0, 0, 0, 0.6);
+    }
+  }
+  :root[data-theme="light"] {
+    --paper: #F4F5F1; --card: #FBFBF9; --ink: #1C241F; --ink-soft: #4C564E;
+    --ink-faint: #7A8479; --line: #DADCD2; --line-soft: #E7E8E1;
+    --pine: #2C5140; --pine-bright: #3A6B54; --whisky: #9C6B26; --heather: #6F5C86; --sea: #37697A;
+    --shadow: 20px 40px 80px -40px rgba(28, 36, 31, 0.28);
+  }
+  :root[data-theme="dark"] {
+    --paper: #12160F; --card: #191F19; --ink: #ECEFE7; --ink-soft: #AEB6AC;
+    --ink-faint: #78827A; --line: #29312A; --line-soft: #212821;
+    --pine: #74B392; --pine-bright: #86C4A2; --whisky: #CE9F55; --heather: #AD9CC0; --sea: #6FAABB;
+    --shadow: 20px 40px 80px -40px rgba(0, 0, 0, 0.6);
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  section, .block { max-width: 960px; margin: 0 auto; }
+  h1, h2, h3, h4 { font-family: var(--display); font-weight: 600; text-wrap: balance; line-height: 1.12; }
+  p { text-wrap: pretty; }
+  a { color: var(--pine); text-decoration-color: color-mix(in srgb, var(--pine) 35%, transparent); text-underline-offset: 3px; }
+  a:hover { text-decoration-color: var(--pine); }
+  :focus-visible { outline: 2px solid var(--pine-bright); outline-offset: 3px; border-radius: 3px; }
+  .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint); margin: 0; }
+  .num { font-variant-numeric: tabular-nums; }
+
+  .hero { padding: 84px 24px 36px; }
+  .hero .eyebrow { margin-bottom: 22px; }
+  .hero h1 { font-size: clamp(48px, 10vw, 100px); letter-spacing: -0.02em; margin: 0; line-height: 0.95; }
+  .hero h1 .sub { display: block; font-size: clamp(18px, 2.8vw, 24px); font-weight: 500; font-style: italic; color: var(--ink-soft); margin-top: 22px; line-height: 1.3; max-width: 33ch; }
+  .hero-meta { margin-top: 28px; font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.06em; color: var(--ink-faint); text-transform: uppercase; }
+
+  .statstrip { margin: 36px auto 0; max-width: 960px; padding: 0 24px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .stat { background: var(--card); padding: 20px 18px; }
+  .stat .n { font-family: var(--display); font-size: 27px; font-weight: 600; color: var(--pine); line-height: 1; }
+  .stat .l { font-family: var(--mono); font-size: 10px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-faint); margin-top: 9px; }
+  @media (max-width: 620px) { .statstrip { grid-template-columns: repeat(2, 1fr); } }
+
+  .block { padding: 54px 24px 0; }
+  .sec-label { display: flex; align-items: baseline; gap: 14px; margin-bottom: 22px; }
+  .sec-label .k { font-family: var(--mono); font-size: 12px; color: var(--pine); letter-spacing: 0.1em; }
+  .sec-label h2 { font-size: clamp(25px, 4.2vw, 35px); margin: 0; letter-spacing: -0.01em; }
+  .sec-label .rule { flex: 1; height: 1px; background: var(--line); align-self: center; }
+  .lede { max-width: 68ch; color: var(--ink-soft); margin: 0 0 24px; }
+  .lede strong { color: var(--ink); font-weight: 600; }
+
+  .callout { border: 1px solid var(--line); border-left: 3px solid var(--whisky); background: color-mix(in srgb, var(--whisky) 8%, var(--card)); border-radius: 0 12px 12px 0; padding: 22px 26px; }
+  .callout.pine { border-left-color: var(--pine); background: color-mix(in srgb, var(--pine) 9%, var(--card)); }
+  .callout h4 { margin: 0 0 8px; font-size: 18px; }
+  .callout p { margin: 0 0 12px; color: var(--ink-soft); font-size: 15.5px; }
+  .callout p:last-child { margin-bottom: 0; }
+
+  .route { display: flex; overflow-x: auto; padding-bottom: 6px; scrollbar-width: thin; }
+  .stop { flex: 1 0 auto; min-width: 150px; padding: 16px 18px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); position: relative; }
+  .stop + .stop { margin-left: 26px; }
+  .stop + .stop::before { content: "→"; position: absolute; left: -22px; top: 50%; transform: translateX(-3px) translateY(-50%); color: var(--ink-faint); font-size: 18px; }
+  .stop .place { font-family: var(--display); font-size: 19px; font-weight: 600; }
+  .stop .nights { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--whisky); margin-top: 4px; }
+  .stop .note { font-size: 13px; color: var(--ink-soft); margin-top: 7px; line-height: 1.4; }
+
+  /* DAY CARDS */
+  .day { display: grid; grid-template-columns: 128px 1fr; gap: 6px 24px; padding: 24px 0; border-bottom: 1px solid var(--line); }
+  .day:first-of-type { border-top: 2px solid var(--ink); }
+  .day .dn { font-family: var(--display); font-size: 17px; font-weight: 600; color: var(--pine); }
+  .day .dd { font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); margin-top: 3px; line-height: 1.5; }
+  .day .body h5 { margin: 0 0 8px; font-family: var(--body); font-weight: 700; font-size: 17px; color: var(--ink); }
+  .day .body > p { margin: 0 0 12px; font-size: 15px; color: var(--ink-soft); }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 12px; }
+  .tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.05em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; border: 1px solid; display: inline-flex; align-items: center; gap: 5px; }
+  .tag::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+  .tag.hist { color: var(--whisky); border-color: color-mix(in srgb, var(--whisky) 40%, transparent); }
+  .tag.tour { color: var(--sea); border-color: color-mix(in srgb, var(--sea) 42%, transparent); }
+  .tag.music { color: var(--heather); border-color: color-mix(in srgb, var(--heather) 44%, transparent); }
+  .tag.dine { color: var(--pine); border-color: color-mix(in srgb, var(--pine) 42%, transparent); }
+  .tag.drive { color: var(--ink-faint); border-color: var(--line); }
+  .dcosts { margin: 0; padding: 0; list-style: none; }
+  .dcost { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 7px 0; border-top: 1px dotted var(--line); font-size: 14.5px; color: var(--ink-soft); }
+  .dcost:first-child { border-top: none; }
+  .dcost .ct strong { color: var(--ink); font-weight: 600; }
+  .dcost .p { font-family: var(--mono); font-size: 13px; color: var(--ink); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .dcost .p.free { color: var(--pine); }
+  .stayline { margin-top: 12px; font-size: 13.5px; color: var(--ink-soft); background: color-mix(in srgb, var(--pine) 7%, transparent); border-radius: 8px; padding: 9px 12px; }
+  .stayline strong { color: var(--ink); }
+  @media (max-width: 560px) { .day { grid-template-columns: 1fr; gap: 10px; } }
+
+  /* FACT LIST */
+  .facts { display: grid; gap: 0; margin-top: 6px; }
+  .fact { display: grid; grid-template-columns: 180px 1fr; gap: 16px; padding: 14px 0; border-top: 1px solid var(--line-soft); align-items: baseline; }
+  .fact:first-child { border-top: none; }
+  .fact .ft { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); }
+  .fact .fv { font-size: 15px; color: var(--ink-soft); }
+  .fact .fv strong { color: var(--ink); font-weight: 600; }
+  @media (max-width: 560px) { .fact { grid-template-columns: 1fr; gap: 3px; } }
+
+  /* TABLE */
+  .tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; margin-top: 6px; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 520px; }
+  thead th { text-align: left; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-faint); font-weight: 500; padding: 13px 18px; background: var(--card); border-bottom: 1px solid var(--line); }
+  thead th.r, td.r { text-align: right; font-variant-numeric: tabular-nums; }
+  tbody td { padding: 12px 18px; border-bottom: 1px solid var(--line-soft); color: var(--ink-soft); }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody td strong { color: var(--ink); font-weight: 600; }
+  tfoot td { padding: 15px 18px; font-weight: 700; color: var(--ink); border-top: 2px solid var(--ink); font-variant-numeric: tabular-nums; }
+  .tnote { font-size: 13px; color: var(--ink-faint); margin-top: 12px; }
+
+  .links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 6px; }
+  .lk { border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); background: var(--card); transition: border-color .15s, transform .15s; }
+  .lk:hover { border-color: var(--pine); transform: translateY(-1px); }
+  .lk .lt { font-weight: 600; font-size: 14.5px; }
+  .lk .ld { font-family: var(--mono); font-size: 10.5px; color: var(--ink-faint); letter-spacing: 0.05em; margin-top: 2px; }
+  .lk .arr { color: var(--pine); font-size: 15px; }
+  @media (max-width: 560px) { .links { grid-template-columns: 1fr; } }
+
+  footer { max-width: 960px; margin: 0 auto; padding: 56px 24px 80px; }
+  footer .disc { font-size: 13px; color: var(--ink-faint); border-top: 1px solid var(--line); padding-top: 22px; line-height: 1.6; }
+  .theme-btn { position: fixed; top: 16px; right: 16px; z-index: 20; font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; background: var(--card); color: var(--ink-soft); border: 1px solid var(--line); border-radius: 999px; padding: 7px 13px; cursor: pointer; }
+  .theme-btn:hover { border-color: var(--pine); color: var(--ink); }
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal { opacity: 0; transform: translateY(14px); animation: rise .7s cubic-bezier(.2,.7,.3,1) forwards; }
+    @keyframes rise { to { opacity: 1; transform: none; } }
+  }
+</style>
+</head>
+<body>
+<button class="theme-btn" id="themeBtn" aria-label="Toggle light and dark theme">Theme</button>
+
+<header class="hero reveal">
+  <p class="eyebrow">Trip Dossier v3 · Day by day · Priced</p>
+  <h1>Scotland
+    <span class="sub">Edinburgh, the Highlands, and Glasgow — walked, driven, and eaten, with a number on every line.</span>
+  </h1>
+  <p class="hero-meta">Fri 30 Apr – Sat 8 May 2027 · Fly in &amp; out of Edinburgh · One rental-car loop · Two travelers</p>
+</header>
+
+<div class="statstrip reveal" style="animation-delay:.08s">
+  <div class="stat"><div class="n num">8</div><div class="l">Nights</div></div>
+  <div class="stat"><div class="n num">3</div><div class="l">Cities</div></div>
+  <div class="stat"><div class="n">~450</div><div class="l">Driving miles</div></div>
+  <div class="stat"><div class="n">£5–6.3k</div><div class="l">Est. ex-flights (2)</div></div>
+</div>
+
+<!-- ROUTE -->
+<section class="block">
+  <div class="sec-label"><span class="k">01</span><h2>The loop</h2><span class="rule"></span></div>
+  <p class="lede">This route also fits your <strong>Marriott preference</strong> better than any earlier version — Edinburgh, Inverness, and Glasgow all have Bonvoy hotels, so you can earn and burn points at every stop. You're on foot in the cities and only in the car for the Highlands leg.</p>
+  <div class="route">
+    <div class="stop"><div class="place">Edinburgh</div><div class="nights num">3 nights</div><div class="note">Walking history &amp; culture. No car yet — you don't want one here.</div></div>
+    <div class="stop"><div class="place">Inverness</div><div class="nights num">2 nights</div><div class="note">Pick up the car, St Andrews &amp; Stirling en route, a full Loch Ness &amp; Culloden day.</div></div>
+    <div class="stop"><div class="place">Glasgow</div><div class="nights num">2 nights</div><div class="note">Scenic Glen Coe drive down; Mackintosh, the Necropolis, Kelvingrove.</div></div>
+    <div class="stop"><div class="place">Edinburgh</div><div class="nights num">1 night</div><div class="note">Drop the car at the airport, tram in, last dinner. Fly home.</div></div>
+  </div>
+</section>
+
+<!-- WEATHER -->
+<section class="block">
+  <div class="sec-label"><span class="k">02</span><h2>Weather &amp; what to pack</h2><span class="rule"></span></div>
+  <p class="lede">Late April into early May is <strong>spring at its kindest</strong> in Scotland — statistically among the driest, sunniest weeks of the year, and blessed with <strong>~16 hours of daylight</strong> (light past 9pm). Expect mild, changeable days: mid-50s°F by afternoon, low-40s°F overnight, a passing shower as likely as sun. The figures below are long-term <strong>May climate normals</strong> for each stop.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Stop</th><th class="r">Avg high</th><th class="r">Avg low</th><th class="r">Rain (May)</th><th class="r">Sun / day</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Edinburgh</strong></td><td class="r">13°C · 55°F</td><td class="r">6°C · 42°F</td><td class="r">~50 mm · 10 days</td><td class="r">~6.5 hrs</td></tr>
+        <tr><td><strong>Inverness</strong> · Highlands</td><td class="r">13°C · 55°F</td><td class="r">5°C · 40°F</td><td class="r">~55 mm · 11 days</td><td class="r">~6 hrs</td></tr>
+        <tr><td><strong>Glasgow</strong></td><td class="r">15°C · 59°F</td><td class="r">7°C · 45°F</td><td class="r">~70 mm · 12 days</td><td class="r">~6.3 hrs</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tnote">Normals describe the shape of the week, not a forecast — check the real one ~10 days out. Glasgow's west-coast position makes it the wettest of the three, though May is still its driest month. Pack <strong>layers, a waterproof shell, and broken-in walking shoes</strong>; the Highlands (Glen Coe, Loch Ness) run a few degrees cooler and windier than the cities, so a warm layer earns its place on the boat cruise and the evening sessions.</p>
+</section>
+
+<!-- DAY BY DAY -->
+<section class="block">
+  <div class="sec-label"><span class="k">03</span><h2>Day by day</h2><span class="rule"></span></div>
+  <p class="lede">Prices are per couple unless noted, indicative for spring 2027 (2027 rates aren't loaded yet — budget ~5–10% over 2026). Trad sessions are nightly at the anchor venues but drift day to day, so confirm the week before.</p>
+
+  <!-- DAY 1 -->
+  <div class="day">
+    <div><div class="dn">Day 1</div><div class="dd">Fri 30 Apr · Arrive · Edinburgh</div></div>
+    <div class="body">
+      <div class="tags"><span class="tag music">Trad session</span><span class="tag dine">Dine</span></div>
+      <h5>Land, settle, first pint of fiddle music</h5>
+      <p>A Blacklane chauffeur meets you at Arrivals (no car — you collect it on Day 4). Shake off the flight with a wander up the Royal Mile, then ease in gently.</p>
+      <ul class="dcosts">
+        <li class="dcost"><span class="ct"><strong>Blacklane</strong> chauffeur, EDI → city (Business Class)</span><span class="p">~£60</span></li>
+        <li class="dcost"><span class="ct"><a href="https://sandybells.com/" target="_blank" rel="noopener"><strong>Sandy Bell's</strong></a> — nightly trad session</span><span class="p free">Free</span></li>
+        <li class="dcost"><span class="ct">Dinner — <a href="https://www.whiskirooms.co.uk/" target="_blank" rel="noopener"><strong>Whiski Rooms</strong></a> (haggis + whisky flight)</span><span class="p">~£75</span></li>
+      </ul>
+      <div class="stayline">Stay: <strong>The Edinburgh Grand</strong> (Luxury Collection, Bonvoy) ~£300/night · or Sheraton Grand ~£340 · or Marriott Holyrood ~£270</div>
+    </div>
+  </div>
+
+  <!-- DAY 2 -->
+  <div class="day">
+    <div><div class="dn">Day 2</div><div class="dd">Sat 1 May · Edinburgh</div></div>
+    <div class="body">
+      <div class="tags"><span class="tag tour">Private guide</span><span class="tag hist">Castle</span><span class="tag hist">Underground</span><span class="tag dine">Dine</span></div>
+      <h5>Old Town, guided — castle to close</h5>
+      <p>A private Blue Badge or Mercat guide for the morning: Edinburgh Castle (Crown Jewels, the Stone of Destiny), then the Royal Mile's hidden closes. Afternoon underground at the Real Mary King's Close.</p>
+      <ul class="dcosts">
+        <li class="dcost"><span class="ct">Private half-day guided walk (2) — book <a href="https://www.viator.com/tours/Edinburgh/Private-Tour-Edinburgh-Highlights-including-entry-to-Edinburgh-Castle/d739-75038P13" target="_blank" rel="noopener"><strong>Blue Badge walk incl. Castle entry</strong></a> (4h, $356, skips the queue — the natural fit for today) or the cheaper <a href="https://www.viator.com/tours/Edinburgh/Edinburgh-Must-See-Experience-with-a-Local-Host/d739-30791P381" target="_blank" rel="noopener">custom private walk</a> (4h, $274/2)</span><span class="p">~£250</span></li>
+        <li class="dcost"><span class="ct"><a href="https://www.edinburghcastle.scot/" target="_blank" rel="noopener"><strong>Edinburgh Castle</strong></a> (covered by Explorer Pass)</span><span class="p">Pass</span></li>
+        <li class="dcost"><span class="ct"><a href="https://www.realmarykingsclose.com/" target="_blank" rel="noopener"><strong>Real Mary King's Close</strong></a> (2)</span><span class="p">~£42</span></li>
+        <li class="dcost"><span class="ct">Dinner — <a href="https://www.thewitchery.com/" target="_blank" rel="noopener"><strong>The Witchery by the Castle</strong></a></span><span class="p">~£150</span></li>
+      </ul>
+      <div class="stayline">Stay: The Edinburgh Grand · <strong>Buy the Historic Scotland Explorer Pass now — £48/person</strong> (covers Edinburgh Castle, Stirling, Urquhart)</div>
+    </div>
+  </div>
+
+  <!-- DAY 3 -->
+  <div class="day">
+    <div><div class="dn">Day 3</div><div class="dd">Sun 2 May · Edinburgh</div></div>
+    <div class="body">
+      <div class="tags"><span class="tag hist">Royal history</span><span class="tag tour">Rosslyn Chapel</span><span class="tag music">Culture</span><span class="tag dine">Seafood</span></div>
+      <h5>Kings, a Templar chapel, and a story night</h5>
+      <p>Palace of Holyroodhouse and its ruined abbey in the morning. In the afternoon — and it <strong>has</strong> to be the afternoon, because <a href="https://www.rosslynchapel.com/visit/" target="_blank" rel="noopener">Rosslyn opens at 12:00 on Sundays</a> — a private guided tour out to <a href="https://www.rosslynchapel.com/" target="_blank" rel="noopener">Rosslyn Chapel</a>, the 15th-century Templar chapel of <em>Da Vinci Code</em> fame, ~45 minutes south, famous for its extraordinary stone carvings, with a woodland walk down to Roslin Glen if time allows. Book the guide from 13:30 and book a chapel timeslot (they run 90 minutes); admission includes a talk by the chapel's own guide half an hour in, so your Blue Badge guide is there for the drive, the Borders context and the legends. Prefer to stay in town? Swap in a private New Town / Georgian-architecture walk instead. Evening at the <a href="https://www.scottishstorytellingcentre.com/" target="_blank" rel="noopener">Scottish Storytelling Centre</a> (check the TradFest programme).</p>
+      <ul class="dcosts">
+        <li class="dcost"><span class="ct"><a href="https://www.rct.uk/visit/palace-of-holyroodhouse" target="_blank" rel="noopener"><strong>Palace of Holyroodhouse</strong></a> (2)</span><span class="p">~£44</span></li>
+        <li class="dcost"><span class="ct">Private <a href="https://www.rosslynchapel.com/" target="_blank" rel="noopener"><strong>Rosslyn Chapel</strong></a> half-day tour + admission (2 × £12) — guides who actually know it: <a href="https://britainsbestguides.org/guides/pedro-gajardo/" target="_blank" rel="noopener"><strong>Pedro Gajardo</strong></a> (Edinburgh Univ. Rosslyn course) · <a href="https://www.goscotlandtours.com/private-tours-scotland/rosslyn-chapel-tour.html" target="_blank" rel="noopener">Go Scotland Tours</a> (~4h, Blue Badge incl.) · <a href="https://www.tourguideagent.com/edinburgh-tour-guides/" target="_blank" rel="noopener">Tour Guide Agent</a> (£265 half day)</span><span class="p">~£300</span></li>
+        <li class="dcost"><span class="ct"><a href="https://www.scottishstorytellingcentre.com/" target="_blank" rel="noopener">Storytelling Centre</a> / TradFest event (2)</span><span class="p">~£20–40</span></li>
+        <li class="dcost"><span class="ct">Dinner — <a href="https://www.theshipontheshore.co.uk/" target="_blank" rel="noopener"><strong>The Ship on the Shore</strong></a>, Leith</span><span class="p">~£95</span></li>
+      </ul>
+      <div class="stayline">Stay: The Edinburgh Grand · Swap option: a private <a href="https://www.viator.com/tours/Edinburgh/Tour-away-from-the-crowds-Dean-Village-Stockbridge-and-New-Town/d739-8616P20" target="_blank" rel="noopener">Edinburgh History private walk — Dean Village, Stockbridge &amp; New Town</a> (2h30, $95) in place of Rosslyn if you'd rather not leave the city · Want both? The <a href="https://www.viator.com/tours/Edinburgh/Edinburgh-Must-See-Experience-with-a-Local-Host/d739-30791P381" target="_blank" rel="noopener">3–8h custom private walk</a> can absorb the New Town on Day 1's spare afternoon</div>
+    </div>
+  </div>
+
+  <!-- DAY 4 -->
+  <div class="day">
+    <div><div class="dn">Day 4</div><div class="dd">Mon 3 May · Edinburgh → St Andrews → Stirling → Inverness · ~5h + stops</div></div>
+    <div class="body">
+      <div class="tags"><span class="tag drive">Drive ~215 mi</span><span class="tag hist">St Andrews</span><span class="tag hist">Stirling Castle</span><span class="tag music">Trad session</span></div>
+      <h5>Collect the car, St Andrews and Stirling on the way north</h5>
+      <p>An early start today. A Blacklane chauffeur runs you out to Edinburgh Airport to collect the automatic, then it's northeast into Fife for <strong>St Andrews</strong> — the ruined Cathedral and St Rule's Tower, a walk over the Swilcan Bridge on the Old Course, and lunch in town. Cut back west to break at <strong>Stirling Castle</strong>, the restored Renaissance palace, before the A9 north to Inverness for your first Highland session. It's a long, zigzag driving day, so leave early; hold the A9 speed limit exactly — average-speed cameras run the whole Perth–Inverness stretch.</p>
+      <ul class="dcosts">
+        <li class="dcost"><span class="ct"><strong>Blacklane</strong> chauffeur, city → EDI (to collect the car)</span><span class="p">~£60</span></li>
+        <li class="dcost"><span class="ct"><a href="https://www.historicenvironment.scot/visit-a-place/places/st-andrews-cathedral/" target="_blank" rel="noopener"><strong>St Andrews Cathedral</strong></a> &amp; <a href="https://www.historicenvironment.scot/visit-a-place/places/st-andrews-castle/" target="_blank" rel="noopener"><strong>Castle</strong></a> (covered by Explorer Pass)</span><span class="p">Pass</span></li>
+        <li class="dcost"><span class="ct"><a href="https://www.standrews.com/" target="_blank" rel="noopener"><strong>The Old Course</strong></a> &amp; Swilcan Bridge — photo stop</span><span class="p free">Free</span></li>
+        <li class="dcost"><span class="ct">Lunch in St Andrews (2)</span><span class="p">~£35</span></li>
+        <li class="dcost"><span class="ct"><a href="https://www.stirlingcastle.scot/" target="_blank" rel="noopener"><strong>Stirling Castle</strong></a> (covered by Explorer Pass)</span><span class="p">Pass</span></li>
+        <li class="dcost"><span class="ct"><a href="https://hootanannyinverness.co.uk/" target="_blank" rel="noopener"><strong>Hootananny</strong></a> — nightly trad, Inverness</span><span class="p free">Free</span></li>
+        <li class="dcost"><span class="ct">Dinner — <a href="https://www.rocpoolrestaurant.com/" target="_blank" rel="noopener"><strong>Rocpool</strong></a>, riverside (book ahead)</span><span class="p">~£110</span></li>
+      </ul>
+      <div class="stayline">Stay: <strong>Rocpool Reserve</strong> (5★ boutique, Chez Roux dining) ~£300–360 · or Ness Walk (5★ riverside) ~£350–450 · Bonvoy budget fallback: AC Hotel Inverness ~£140</div>
+    </div>
+  </div>
+
+  <!-- DAY 5 -->
+  <div class="day">
+    <div><div class="dn">Day 5</div><div class="dd">Tue 4 May · Inverness · Loch Ness &amp; Culloden</div></div>
+    <div class="body">
+      <div class="tags"><span class="tag hist">Culloden</span><span class="tag hist">Loch Ness</span><span class="tag tour">Boat cruise</span><span class="tag music">Music</span></div>
+      <h5>Jacobite history and the loch</h5>
+      <p>Morning at Culloden Battlefield and the 4,000-year-old Clava Cairns five minutes away. Afternoon down Loch Ness to Urquhart Castle, plus a cruise on the water. <strong>Pre-book Urquhart's entry slot and parking bay</strong> — the car park fills daily. Prefer not to drive it? A private Blue Badge driver-guide day runs <strong>from £715</strong> on STGA's 2027 card, + admissions — or book <a href="https://www.viator.com/tours/Inverness/Loch-Ness-Culloden-Battlefield-Clava-Cairns-Cawdor-Castle-and-more-from-Inverness/d5051-207623P4" target="_blank" rel="noopener"><strong>this private driver-guide day</strong></a> (7–8h, $709/group, 5.0 from 169), which covers today's whole itinerary and adds Cawdor Castle.</p>
+      <ul class="dcosts">
+        <li class="dcost"><span class="ct"><a href="https://www.nts.org.uk/visit/places/culloden" target="_blank" rel="noopener"><strong>Culloden Battlefield</strong></a> (NTS, 2)</span><span class="p">~£25</span></li>
+        <li class="dcost"><span class="ct"><strong>Clava Cairns</strong></span><span class="p free">Free</span></li>
+        <li class="dcost"><span class="ct"><a href="https://www.historicenvironment.scot/visit-a-place/places/urquhart-castle/" target="_blank" rel="noopener"><strong>Urquhart Castle</strong></a> (Explorer Pass; book slot + parking)</span><span class="p">Pass</span></li>
+        <li class="dcost"><span class="ct"><a href="https://www.jacobite.co.uk/tours" target="_blank" rel="noopener"><strong>Jacobite</strong></a> Loch Ness cruise, ~2 hr (2)</span><span class="p">~£62</span></li>
+        <li class="dcost"><span class="ct">Dinner — <a href="https://www.mustardseedrestaurant.co.uk/" target="_blank" rel="noopener"><strong>The Mustard Seed</strong></a> + <a href="https://www.macgregorsbars.com/" target="_blank" rel="noopener">MacGregor's</a> music</span><span class="p">~£60</span></li>
+      </ul>
+      <div class="stayline">Stay: Rocpool Reserve · Optional add: Fort George (+~£20/2) · A guide on foot in Inverness only exists at 2 hours — the town walks end to end in 90 minutes — so if you want one, take the <a href="https://www.viator.com/tours/Inverness/Private-Inverness-City-Centre-Walking-tour-Invernessian-Guide/d5051-88768P5" target="_blank" rel="noopener">private city walk with an Invernessian guide</a> ($204, 5.0) on an evening, not as a day</div>
+    </div>
+  </div>
+
+  <!-- DAY 6 -->
+  <div class="day">
+    <div><div class="dn">Day 6</div><div class="dd">Wed 5 May · Inverness → Glasgow · ~4h scenic</div></div>
+    <div class="body">
+      <div class="tags"><span class="tag drive">A82 · Glen Coe</span><span class="tag hist">Landscape</span><span class="tag music">Trad session</span><span class="tag dine">Institution</span></div>
+      <h5>The great drive south through Glen Coe</h5>
+      <p>Take the A82 rather than the faster A9 — it's the once-in-a-trip scenic road, down the length of Loch Ness, across Rannoch Moor, through Glen Coe (site of the 1692 massacre), and along Loch Lomond into Glasgow. Start early, don't rush. Dinner at a Glasgow institution, then a session round the corner.</p>
+      <ul class="dcosts">
+        <li class="dcost"><span class="ct">Glen Coe — drive &amp; walk</span><span class="p free">Free</span></li>
+        <li class="dcost"><span class="ct">Roadside lunch (Fort William / Glencoe, 2)</span><span class="p">~£30</span></li>
+        <li class="dcost"><span class="ct">Dinner — <a href="https://www.ubiquitouschip.co.uk/" target="_blank" rel="noopener"><strong>The Ubiquitous Chip</strong></a>, Ashton Lane</span><span class="p">~£130</span></li>
+        <li class="dcost"><span class="ct"><a href="https://www.belhaven.co.uk/pubs/glasgow/scotia-bar" target="_blank" rel="noopener"><strong>The Scotia Bar</strong></a> session (Thu–Sun) or The Ben Nevis</span><span class="p free">Free</span></li>
+      </ul>
+      <div class="stayline">Stay: <strong>Kimpton Blythswood Square</strong> (5★, iasg seafood) ~£280–350 · or One Devonshire Gardens (West End townhouse) ~£250–320 · Bonvoy budget fallback: AC Hotel Glasgow ~£160</div>
+    </div>
+  </div>
+
+  <!-- DAY 7 -->
+  <div class="day">
+    <div><div class="dn">Day 7</div><div class="dd">Thu 6 May · Glasgow</div></div>
+    <div class="body">
+      <div class="tags"><span class="tag tour">Mackintosh tour</span><span class="tag hist">Cathedral &amp; Necropolis</span><span class="tag hist">Kelvingrove</span><span class="tag dine">Curry</span></div>
+      <h5>Design, the dead, and the great free galleries</h5>
+      <p>A private Charles Rennie Mackintosh tour in the morning (bundles the Willow Tea Rooms exhibition), then the medieval Cathedral and the Victorian Necropolis behind it — both free — and the free, extraordinary Kelvingrove. Dinner in Glasgow's legendary curry scene; a Sloans ceilidh if it's a Friday.</p>
+      <ul class="dcosts">
+        <li class="dcost"><span class="ct">Private <a href="https://walkingtoursin.com/scotland-tours/glasgow/" target="_blank" rel="noopener"><strong>Mackintosh</strong></a> tour (2, half-day, incl. Willow entry) — book direct; Viator's Mackintosh walk is <strong>Saturdays only</strong> and today is a Thursday</span><span class="p">~£90</span></li>
+        <li class="dcost"><span class="ct">Adding a general city guide? <a href="https://www.viator.com/tours/Glasgow/Glasgows-Must-Sees-Private-Tour/d740-45766P1" target="_blank" rel="noopener"><strong>Half-Day Private Must-Sees</strong></a> (4h, $346/grp, 5.0 from 175) covers the Cathedral, Necropolis and GoMA below</span><span class="p">opt.</span></li>
+        <li class="dcost"><span class="ct"><a href="https://www.historicenvironment.scot/visit-a-place/places/glasgow-cathedral/" target="_blank" rel="noopener"><strong>Glasgow Cathedral</strong></a> + Necropolis</span><span class="p free">Free</span></li>
+        <li class="dcost"><span class="ct"><a href="https://www.glasgowlife.org.uk/museums/venues/kelvingrove-art-gallery-and-museum" target="_blank" rel="noopener"><strong>Kelvingrove Art Gallery</strong></a></span><span class="p free">Free</span></li>
+        <li class="dcost"><span class="ct">Dinner — <a href="https://www.motherindia.co.uk/" target="_blank" rel="noopener"><strong>Mother India</strong></a>, Finnieston</span><span class="p">~£70</span></li>
+      </ul>
+      <div class="stayline">Stay: Kimpton Blythswood Square · Optional: <a href="https://www.glasgowlife.org.uk/museums/venues/the-burrell-collection" target="_blank" rel="noopener">Burrell Collection</a> (free) if you want a second gallery</div>
+    </div>
+  </div>
+
+  <!-- DAY 8 -->
+  <div class="day">
+    <div><div class="dn">Day 8</div><div class="dd">Fri 7 May · Glasgow → Edinburgh · ~1h10</div></div>
+    <div class="body">
+      <div class="tags"><span class="tag drive">Drop car · EDI</span><span class="tag hist">Last sights</span><span class="tag dine">Farewell</span></div>
+      <h5>Back east, car returned, a last Edinburgh night</h5>
+      <p>The mid-afternoon car return buys you an unhurried Glasgow morning — a last coffee on Ashton Lane, or the Burrell Collection if you skipped it — before the short hop east. <strong>Return the car at the airport</strong> (not the city; central parking is painful) and a Blacklane chauffeur into town. What's left of the day covers one or two things you missed — Calton Hill, Dean Village, a final <a href="https://sandybells.com/" target="_blank" rel="noopener">Sandy Bell's</a> session — then a farewell dinner in the New Town. Don't stack the afternoon; the drop eats the middle of it.</p>
+      <ul class="dcosts">
+        <li class="dcost"><span class="ct">Car drop at EDI + <strong>Blacklane</strong> into city</span><span class="p">~£60</span></li>
+        <li class="dcost"><span class="ct">Free afternoon — closes, Calton Hill, Dean Village</span><span class="p free">Free</span></li>
+        <li class="dcost"><span class="ct">Dinner — <a href="https://www.caferoyaledinburgh.com/" target="_blank" rel="noopener"><strong>The Café Royal</strong></a> (Victorian oyster bar)</span><span class="p">~£70</span></li>
+      </ul>
+      <div class="stayline">Stay: a central Bonvoy for the last night — Edinburgh Grand again, or Marriott Holyrood ~£270</div>
+    </div>
+  </div>
+
+  <!-- DAY 9 -->
+  <div class="day">
+    <div><div class="dn">Day 9</div><div class="dd">Sat 8 May · Fly home</div></div>
+    <div class="body">
+      <div class="tags"><span class="tag drive">Tram to EDI</span></div>
+      <h5>Home</h5>
+      <p>A Blacklane chauffeur from the city centre back to Edinburgh Airport (~30 min) and fly out. No car to juggle — you returned it yesterday.</p>
+      <ul class="dcosts">
+        <li class="dcost"><span class="ct"><strong>Blacklane</strong> chauffeur, city → EDI</span><span class="p">~£60</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- HOTELS AT A GLANCE -->
+<section class="block">
+  <div class="sec-label"><span class="k">04</span><h2>Hotels at a glance</h2><span class="rule"></span></div>
+  <p class="lede">A 4–5 star pick for each stop, with alternatives. Edinburgh stays on <strong>Bonvoy</strong> for your 4 priciest nights, where the points matter most; Inverness and Glasgow step up to independent luxury near the nightlife and dining. The budget below prices this path — dropping both back to the Bonvoy AC hotels would save roughly £600–1,000 and earn points.</p>
+  <div class="facts">
+    <div class="fact"><div class="ft">Edinburgh · 4 nts</div><div class="fv"><strong>The Edinburgh Grand</strong> (Luxury Collection, Bonvoy) ~£300 · Sheraton Grand ~£340 · Marriott Holyrood ~£270. Upgrade: Gleneagles Townhouse / boutique ~£400+.</div></div>
+    <div class="fact"><div class="ft">Inverness · 2 nts</div><div class="fv"><strong>Rocpool Reserve</strong> (5★ boutique, Chez Roux dining) ~£300–360 · Ness Walk (5★ riverside, romantic) ~£350–450 · on Church St for the trad sessions: River Ness Hotel (4★) ~£150–200. Bonvoy fallback: AC Hotel Inverness ~£140.</div></div>
+    <div class="fact"><div class="ft">Glasgow · 2 nts</div><div class="fv"><strong>Kimpton Blythswood Square</strong> (only AA 5★ in the centre, iasg seafood) ~£280–350 · One Devonshire Gardens / Hotel du Vin (West End townhouse) ~£250–320 · House of Gods (Merchant City boutique, nightlife at the door) ~£200–280. Bonvoy fallback: AC Hotel Glasgow ~£160.</div></div>
+    <div class="fact"><div class="ft">Points note</div><div class="fv">On this luxury path only Edinburgh is Bonvoy — burn points across your 4 Edinburgh nights; Inverness and Glasgow are independent (the Kimpton earns IHG One Rewards). Want points at all three? Keep the AC hotels.</div></div>
+  </div>
+</section>
+
+<!-- BUDGET -->
+<section class="block">
+  <div class="sec-label"><span class="k">05</span><h2>What it adds up to</h2><span class="rule"></span></div>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Category</th><th>What's in it</th><th class="r">Est. (2, GBP)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Hotels</strong></td><td>8 nights — Edinburgh Bonvoy ×4, Rocpool Reserve ×2, Kimpton Blythswood ×2</td><td class="r">£2,250–2,800</td></tr>
+        <tr><td><strong>Car</strong></td><td>Booked £469.16 (4 days, Premium auto) + damage cover + fuel + parking, the ~450-mi loop</td><td class="r">£620–780</td></tr>
+        <tr><td><strong>Private tours</strong></td><td>2 Edinburgh walks + Glasgow Mackintosh (self-drive Loch Ness)</td><td class="r">£590–700</td></tr>
+        <tr><td><strong>Attractions</strong></td><td>2 Explorer Passes + Holyrood, Mary King's Close, Culloden, cruise</td><td class="r">£290–340</td></tr>
+        <tr><td><strong>Dining</strong></td><td>8 dinners + lunches (mix of institutions and pubs)</td><td class="r">£950–1,300</td></tr>
+        <tr><td><strong>Transit &amp; extras</strong></td><td>4 Blacklane airport chauffeurs (~£60 ea), incidental entries, sessions (mostly free)</td><td class="r">£300–400</td></tr>
+      </tbody>
+      <tfoot><tr><td colspan="2">On-the-ground total (excludes transatlantic flights)</td><td class="r">~£5,000–6,320</td></tr></tfoot>
+    </table>
+  </div>
+  <p class="tnote">≈ $6,350–8,050 for two. The car line rose after the Enterprise confirmation landed: £469.16 is booked but carries <strong>no damage cover</strong>, so budget the waiver on top (see section 06). Transatlantic flights add roughly £1,600–3,000. Dropping Inverness &amp; Glasgow to the Bonvoy AC hotels saves ~£600–1,000 (and earns points); swapping the four Blacklane transfers for the airport tram saves ~£190. Choose the private Loch Ness driver-guide day instead of self-driving it for +~£570. The trad sessions and Glasgow's best museums are free, which keeps a luxury-hotel week reasonable.</p>
+</section>
+
+<!-- PRACTICAL -->
+<section class="block">
+  <div class="sec-label"><span class="k">06</span><h2>Practical &amp; booking notes</h2><span class="rule"></span></div>
+  <div class="facts">
+    <div class="fact"><div class="ft">Explorer Pass</div><div class="fv"><strong>£48/person — buy it.</strong> Covers Edinburgh Castle, Stirling, and Urquhart alone, which more than pays it back.</div></div>
+    <div class="fact"><div class="ft">Pre-book timed</div><div class="fv">Edinburgh Castle, Real Mary King's Close, Holyroodhouse, and <strong>Urquhart (entry slot + parking bay)</strong> — all sell out in spring.</div></div>
+    <div class="fact"><div class="ft">Car — collect &amp; return</div><div class="fv">Collect at Edinburgh Airport on Day 4, return there Day 8. Reserve an <strong>automatic early</strong> — scarce in the UK. Airport ↔ centre by <strong>Blacklane</strong> chauffeur (~£60/transfer, Business Class).</div></div>
+    <div class="fact"><div class="ft">Car — BOOKED ✓</div><div class="fv"><strong>Enterprise, conf. 398156396</strong> — confirmation email 24 Jul 2026. <strong>Mercedes C-Class</strong> or similar (Premium class, automatic), <strong>unlimited mileage</strong>. EDI Car Rental Centre, Jubilee Rd EH12 9FS, +44 131 341 4000 — 3-min covered walk, no shuttle; branch open <strong>07:00–23:59</strong> on both your days. Pick-up <strong>Mon 3 May 2027, morning</strong> — return <strong>Fri 7 May 2027, mid-afternoon</strong> (modified 24 Jul 2026; exact times to be pinned once the revised confirmation arrives). The original 12:00→12:00 booking priced at 4 days @ £117.29 = <strong>£469.16</strong>, taxes and fees included; the longer window will re-price (see below). Enterprise will contact you by email or text 24 hours before pick-up; online check-in is open now. Enterprise will contact you by email or text 24 hours before pick-up; online check-in is open now. <strong>Deposit:</strong> Premium class means a <strong>£500 hold and a mandatory credit card</strong> in Thomas King's name — debit cards are not accepted for this class. <strong>Bring:</strong> that credit card, a physical driving licence (digital licences are refused), passport, and proof of return travel plus accommodation. <strong>Second driver:</strong> £19.11/day at airport branches (~£76 for the four days) — add at the counter. <strong>After-hours return:</strong> park in an Enterprise-marked bay in the airport rental car park, keys in the drop box by the Car Rental Centre main doors.</div></div>
+    <div class="fact"><div class="ft">Car — account flag ⚠ call first</div><div class="fv">The confirmation carries a banner: <em>"there is an issue with your account that impacts this reservation. Please call us."</em> The phone number is truncated in the email itself. <strong>Clear this before booking anything else around the car</strong> — call the branch on <strong>+44 131 341 4000</strong> or open the View/Modify/Cancel link in the confirmation. Ask for the Damage Waiver price at the same time (see below), and confirm the revised pick-up and return times and the new total while you're on the line.</div></div>
+    <div class="fact"><div class="ft">Car — you have NO waiver ⚠</div><div class="fv"><strong>Correction to the earlier note.</strong> The confirmation states plainly: <em>"This rental does not include protection products."</em> There is no Damage Waiver on this booking, and Enterprise's own terms say that when DW is not included, <strong>the renter has full liability for the vehicle</strong> — its market value, not a capped excess. Do not travel on the assumption that a basic waiver is in place. Your options: <strong>(a)</strong> buy Enterprise's DW at the counter (price not quoted in the confirmation — ask), which caps damage at a <strong>£2,250 excess</strong> for a Premium car, then cover that excess with a standalone third-party policy (~£40–70/trip); <strong>(b)</strong> DW plus Enterprise's <strong>Excess Protection at £30/day (£120)</strong>, which drops the excess to <strong>£250</strong>; or <strong>(c)</strong> rely on a US credit card's rental CDW — but verify in writing that it covers the <strong>United Kingdom</strong> and that a Mercedes C-Class is not excluded under the card's luxury or expensive-vehicle clause. A standalone excess policy on its own reimburses an excess; it does not stand in for the waiver you don't have. <strong>Roadside Protection</strong> (tyres, keys, glass, callouts) is a separate £12.50/day.</div></div>
+    <div class="fact"><div class="ft">Car — times moved ✓</div><div class="fv"><strong>Done 24 Jul 2026:</strong> pick-up pulled into the <strong>morning</strong> of Mon 3 May and the return pushed to <strong>mid-afternoon</strong> on Fri 7 May. That fixes Day 4 — St Andrews <em>and</em> Stirling before Inverness stops being a race — and buys a relaxed final morning in Glasgow on Day 8. <strong>Watch the fifth day:</strong> UK rentals bill in 24-hour periods, so a return past roughly 12:30 runs into hourly charges that cap at a full extra day (~£117). Check whether the revised total still reads £469.16 or has stepped up to five days; if it's a full extra day either way, take the whole afternoon rather than rushing back.</div></div>
+    <div class="fact"><div class="ft">Car — live quotes (May 2027)</div><div class="fv"><strong>Pulled 24 Jul 2026</strong> (Kayak · EDI · 3–7 May 2027 · 4-day totals · <strong>automatic</strong>): <strong>Skoda Octavia</strong> intermediate ~$376 / £296 · <strong>Nissan Juke</strong> compact SUV ~$417 / £328 · <strong>Nissan Qashqai</strong> intermediate SUV ~$482 / £380 — all airport-terminal, free cancellation. Avis direct ~$360–380. Off-airport is cheaper (VW Taigo auto ~$199) but lower-rated. <strong>Book a free-cancellation automatic now</strong> to lock the scarce car, then re-shop later. Prefer booking direct with a major over the cheapest broker.</div></div>
+    <div class="fact"><div class="ft">Driving</div><div class="fv">A9 north = average-speed cameras end-to-end, hold the limit. A82 south (Day 6) is the scenic Glen Coe route — slower, start early.</div></div>
+    <div class="fact"><div class="ft">Parking</div><div class="fv">Skip city-centre parking in Edinburgh (you have no car there). Inverness/Glasgow: use hotel parking; Urquhart parking is free once the bay is booked.</div></div>
+    <div class="fact"><div class="ft">Timing bonus</div><div class="fv">The locked 30 Apr–8 May dates open on <strong>Edinburgh TradFest</strong>'s first day — all four Edinburgh nights fall inside it, for extra sessions and storytelling.</div></div>
+    <div class="fact"><div class="ft">St Andrews golf</div><div class="fv"><strong>Not bookable yet — 2027 tee sheet not released.</strong> The New, Jubilee, Eden, Strathtyrum and Castle courses (<em>not</em> the Old Course) book directly online (no ballot), but St Andrews loads the sheet <strong>season by season</strong>, and it currently ends ~14 Oct 2026. The 2027 sheet is expected to open <strong>late Aug / early Sept 2026</strong> — confirm the exact date with Reservations, <strong>+44 1334 466718</strong>. <strong>2027 is an Open Championship year at St Andrews</strong>, so demand will be unusually heavy — book the day 2027 opens. Green fees ~£55–180/round (2-golfer min). St Andrews sits ~1h30 NE of Edinburgh in Fife. Day 4 now stops in the town (Cathedral + an Old Course walk) en route north — but that's sightseeing; actually <em>playing</em> a round still needs a dedicated Fife day, not the current drive-through.</div></div>
+  </div>
+</section>
+
+<!-- TOURS -->
+<section class="block">
+  <div class="sec-label"><span class="k">07</span><h2>Tours — booking options</h2><span class="rule"></span></div>
+  <p class="lede">Live <strong>Viator</strong> listings matched to the private-guide lines above, plus the highest-rated <strong>Outlander</strong> film-location day tours. Prices are Viator's "from" rate in <strong>USD</strong>, current-season and indicative — 2027 dates aren't bookable yet. Private tours are generally priced <strong>per group/party</strong>; walking tours may be per person, so confirm at checkout.</p>
+
+  <h4 style="font-size:17px;margin:20px 0 10px;">Private city guides &amp; the Loch Ness day</h4>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Tour</th><th>Type</th><th class="r">Length</th><th class="r">From (USD)</th><th class="r">Rating</th></tr></thead>
+      <tbody>
+        <tr><td><strong><a href="https://www.viator.com/tours/Edinburgh/Edinburgh-Private-walking-tour/d739-8616P3" target="_blank" rel="noopener">Edinburgh Private Walking Tour</a></strong> · Royal Mile &amp; Old Town</td><td>Private walk</td><td class="r">2h30</td><td class="r">$116</td><td class="r">5.0 (94)</td></tr>
+        <tr><td><strong><a href="https://www.viator.com/tours/Edinburgh/Edinburgh-Half-Day-Guided-Private-Tour-in-a-Premium-Minivan/d739-100490P2" target="_blank" rel="noopener">Edinburgh Half-Day Private</a></strong> · minivan, Castle + Old Town</td><td>Private</td><td class="r">4h</td><td class="r">$273</td><td class="r">4.9 (53)</td></tr>
+        <tr><td><strong><a href="https://www.viator.com/tours/Edinburgh/Private-Edinburgh-and-Rosslyn-Chapel-Tour/d739-31322P38" target="_blank" rel="noopener">Edinburgh + Rosslyn Chapel Private Tour</a></strong> · full-day combo (Day 3)</td><td>Private</td><td class="r">8h</td><td class="r">$1,090 / grp</td><td class="r">5.0 (5)</td></tr>
+        <tr><td><strong><a href="https://www.viator.com/tours/Inverness/Loch-Ness-Culloden-Battlefield-Clava-Cairns-Cawdor-Castle-and-more-from-Inverness/d5051-207623P4" target="_blank" rel="noopener">Inverness Private: Loch Ness, Culloden, Cawdor &amp; Clava</a></strong></td><td>Private driver-guide</td><td class="r">7–8h</td><td class="r">$709 / grp</td><td class="r">5.0 (169)</td></tr>
+        <tr><td><strong><a href="https://www.viator.com/tours/Glasgow/Glasgows-Must-Sees-Private-Tour/d740-45766P1" target="_blank" rel="noopener">Half-Day Private Glasgow Must-Sees</a></strong> · Cathedral, Necropolis, GoMA</td><td>Private</td><td class="r">4h</td><td class="r">$346 / grp</td><td class="r">5.0 (175)</td></tr>
+        <tr><td><a href="https://www.viator.com/tours/Glasgow/Private-Glasgow-City-Centre-Walking-Tour/d740-50040P4" target="_blank" rel="noopener">Glasgow Mackintosh Walking Tour</a> · Tearooms exhibition incl.</td><td>Small-group · <strong>Sat only</strong></td><td class="r">~2h</td><td class="r">—</td><td class="r">—</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tnote"><strong>Heads-up:</strong> Viator has no <em>private</em> Mackintosh tour, and the small-group one runs Saturdays only — your Glasgow days are Wed–Thu, so book a private Mackintosh direct via <a href="https://walkingtoursin.com/scotland-tours/glasgow/" target="_blank" rel="noopener">walkingtoursin.com</a> instead. For the Edinburgh walks, booking a Blue Badge guide direct through <a href="https://www.stga.co.uk/" target="_blank" rel="noopener">STGA</a> only pays off at <em>full</em> day — at half a day Viator is cheaper for two. Priced out below. Viator's clear win is the <strong>Inverness driver-guide day</strong> — it covers your whole Day 5 (and adds Cawdor, which opens 25 April). <strong>Rosslyn:</strong> the Viator private option is a full 8-hour combo that re-covers Edinburgh sights you're already touring — for Rosslyn alone, book a private half-day Blue Badge guide (~£280–300) via <a href="https://www.stga.co.uk/" target="_blank" rel="noopener">STGA</a>, or <a href="https://www.rabbies.com/en/scotland-tours/from-edinburgh/day-tours/rosslyn-chapel-the-scottish-borders-short-day-tour" target="_blank" rel="noopener">Rabbie's small-group Rosslyn &amp; Scottish Borders</a> (~£50pp) if private isn't essential.</p>
+
+  <h4 style="font-size:17px;margin:26px 0 10px;">Full-day private walking tours — city by city</h4>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Tour</th><th>City</th><th class="r">Length</th><th class="r">From (USD)</th><th class="r">Rating</th></tr></thead>
+      <tbody>
+        <tr><td><strong><a href="https://www.viator.com/tours/Edinburgh/Edinburgh-Must-See-Experience-with-a-Local-Host/d739-30791P381" target="_blank" rel="noopener">Edinburgh Private Custom Walking Tour — Highlights &amp; Hidden Gems</a></strong> · you set the route and the length; pickup offered</td><td>Edinburgh</td><td class="r">3–8h</td><td class="r">$103</td><td class="r">4.8 (106)</td></tr>
+        <tr><td><a href="https://www.viator.com/tours/Edinburgh/Private-Tour-Edinburgh-Highlights-including-entry-to-Edinburgh-Castle/d739-75038P13" target="_blank" rel="noopener">Private Walking Tour: Edinburgh Highlights, incl. Castle entry</a> · Blue Badge guide, skips the Castle queue</td><td>Edinburgh</td><td class="r">4h</td><td class="r">$356</td><td class="r">4.7 (15)</td></tr>
+        <tr><td><a href="https://www.viator.com/tours/Edinburgh/Edinburgh-Guided-Walking-Tour-Private-half-day/d739-8613P2" target="_blank" rel="noopener">Guided Edinburgh Private Walking Tour</a> · the most-reviewed private walk in the city</td><td>Edinburgh</td><td class="r">3h30</td><td class="r">$428</td><td class="r">4.9 (280)</td></tr>
+        <tr><td><strong><a href="https://www.viator.com/tours/Glasgow/Glasgow-Like-a-Local-Customized-Private-Tour/d740-86919P61" target="_blank" rel="noopener">Glasgow Private Walking Tour with a Local</a></strong> · customised; the longest walk Viator sells here</td><td>Glasgow</td><td class="r">2–6h</td><td class="r">$56</td><td class="r">4.0 (30)</td></tr>
+        <tr><td><strong><a href="https://www.viator.com/tours/Inverness/Private-Inverness-City-Centre-Walking-tour-Invernessian-Guide/d5051-88768P5" target="_blank" rel="noopener">Private Inverness City Centre Walk</a></strong> · local Invernessian guide, history-led</td><td>Inverness</td><td class="r">2h</td><td class="r">$204</td><td class="r">5.0 (10)</td></tr>
+        <tr><td><a href="https://www.viator.com/tours/Inverness/Private-Inverness-Highlights-Tour-with-a-Local/d5051-171338P2" target="_blank" rel="noopener">Private Walking Tour in Inverness with a Local</a></td><td>Inverness</td><td class="r">1h30</td><td class="r">$183</td><td class="r">4.8 (27)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tnote"><strong>Only Edinburgh actually has one.</strong> A true full-day private walk exists in exactly one of your three cities — the top line above, which lets you dial the day anywhere from 3 to 8 hours and set the route yourself. <strong>Glasgow tops out at 6 hours</strong> on foot and that listing is thinly reviewed (4.0 from 30); the <a href="https://www.viator.com/tours/Glasgow/Glasgows-Must-Sees-Private-Tour/d740-45766P1" target="_blank" rel="noopener">4-hour Must-Sees private</a> in the table above is the safer Glasgow booking at 4.9 from 179 — pair it with a free Kelvingrove afternoon to fill the day. <strong>Inverness has nothing longer than 2 hours</strong>, and that's the market being right rather than thin: the old town is walkable end to end in about 90 minutes. Your full day there is the <a href="https://www.viator.com/tours/Inverness/Loch-Ness-Culloden-Battlefield-Clava-Cairns-Cawdor-Castle-and-more-from-Inverness/d5051-207623P4" target="_blank" rel="noopener">Culloden / Clava / Loch Ness driver-guide circuit</a> already booked into Day 5 — add the 2-hour city walk on the evening you arrive if you want a guide on foot as well. Prices are per party on the fixed-length tours and vary by group size on the customisable ones; confirm at checkout.</p>
+
+  <h4 style="font-size:17px;margin:26px 0 10px;">Viator vs. booking the guide direct — Edinburgh, priced</h4>
+  <p class="lede" style="font-size:15px;">The <a href="https://www.stga.co.uk/" target="_blank" rel="noopener">Scottish Tourist Guides Association</a> publishes indicative Blue Badge rates, and the <strong>2027 card is already out</strong> — the year you're travelling. STGA charges a flat guiding fee per engagement; Viator charges <em>per person</em>. That single difference decides which one wins, and it doesn't fall the same way at every length. Below is a party of two, English-language, checked against a live Viator booking screen.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Length</th><th class="r">Viator private walk · 2 adults</th><th class="r">STGA Blue Badge 2027 · per party</th><th class="r">Cheaper</th></tr></thead>
+      <tbody>
+        <tr><td>3 hours</td><td class="r">$206 (£155)</td><td class="r">— half-day minimum applies</td><td class="r">Viator</td></tr>
+        <tr><td><strong>4 hours / half day</strong></td><td class="r">$274 (£206)</td><td class="r">from £235 ($313)</td><td class="r"><strong>Viator, by ~£29</strong></td></tr>
+        <tr><td><strong>8 hours / full day</strong></td><td class="r">$538 (£403)</td><td class="r"><strong>from £355 ($473)</strong></td><td class="r"><strong>STGA, by ~£48</strong></td></tr>
+        <tr><td>Full day, driver-guiding</td><td class="r">—</td><td class="r">from £715 ($953)</td><td class="r">n/a</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tnote"><strong>The crossover is somewhere past four hours.</strong> At half a day Viator actually undercuts the STGA card for two people — the earlier note in this dossier said otherwise, and at 4 hours it was wrong. Book direct only for the <strong>full day</strong>, where the flat guiding fee beats eight hours of per-head pricing by about £48, and where the gap widens fast if anyone joins you: Viator's line item reads "2 Adults × $268.92" and multiplies, while the STGA fee covers the party. <strong>What the £355 does not include:</strong> entrance fees (Edinburgh Castle, Holyroodhouse, Mary King's Close all sit on top), travel, meals, or the guide's travel time. Viator's price includes pickup, free cancellation to 24 hours, and card protection — worth something against a private arrangement made 9 months out. Two more things: it's a <em>from</em> rate, so a senior Edinburgh guide in TradFest week may quote above it, and <strong>the contract is with the guide, not with STGA</strong> — the Association lists members, it doesn't sell or stand behind the tour. Half days are capped at 4 hours and must either finish by 13:00 or start from 13:30. Rates converted at £1 = $1.333 (24 Jul 2026).</p>
+
+  <h4 style="font-size:17px;margin:26px 0 10px;">Rosslyn on Day 3 — the Sunday problem, then who to book</h4>
+  <div class="callout pine">
+    <p><strong>Day 3 is Sunday 2 May 2027, and <a href="https://www.rosslynchapel.com/visit/" target="_blank" rel="noopener">Rosslyn Chapel doesn't open until 12:00 on Sundays</a></strong> (9:00–17:00 Mon–Sat). A morning Rosslyn half-day that day is not possible. It has to be the afternoon — which happens to fit the STGA rule that a half day either finishes by 13:00 or starts from 13:30. Book the guide from 13:30.</p>
+    <p style="margin-top:10px;">Two more things about the chapel that shape the booking: it runs on <strong>90-minute timed slots</strong> and you should book the slot in advance (£12 adult), and <strong>admission already includes a short talk by one of the chapel's own expert guides</strong>, given half an hour into each slot. Your Blue Badge guide gives you the Borders context, the drive, and the carvings-and-legends framing; the chapel's staff cover the interior. Don't pay a private guide for eight hours expecting them to lecture inside — that's not what the visit is.</p>
+  </div>
+  <p class="tnote" style="margin-top:14px;"><strong>Finding a guide with genuine Rosslyn experience is harder than it should be.</strong> STGA's directory has no Rosslyn filter — 159 Edinburgh Blue Badge guides match English-language walking tours, the profiles list structured specialisms rather than itineraries, and not one of the twelve who tag "Religion" mentions Rosslyn anywhere. So it can't be filtered for. It has to be asked for, or sourced from the guides who advertise it. Four leads, verified:</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Who</th><th>Rosslyn credential</th><th class="r">Shape</th><th class="r">Indicative cost</th></tr></thead>
+      <tbody>
+        <tr><td><strong><a href="https://britainsbestguides.org/guides/pedro-gajardo/" target="_blank" rel="noopener">Pedro Gajardo</a></strong> · STGA Blue Badge, all Scotland · English &amp; Spanish</td><td>Holds a <strong>University of Edinburgh course on Rosslyn Chapel</strong> specifically — the strongest documented Rosslyn credential found</td><td class="r">Walking or driver</td><td class="r">quote; STGA card applies</td></tr>
+        <tr><td><strong><a href="https://www.toursbylocals.com/tours/united-kingdom/edinburgh/tour-details/rosslyn-chapel-and-the-home-of-sir-walter-scott-664d281b1bbe5b817c498941" target="_blank" rel="noopener">Kirsty M.</a></strong> · STGA Blue Badge, PhD in Scottish history</td><td>Runs a standing <strong>Rosslyn + Abbotsford</strong> private day, 5.0 from 5 reviews</td><td class="r">8h, drives you, 1–3 people</td><td class="r">from £920</td></tr>
+        <tr><td><a href="https://www.tourguideagent.com/edinburgh-tour-guides/" target="_blank" rel="noopener">Tour Guide Agent</a> · agency, hand-picks STGA Blue/Green Badge guides</td><td>Lists "The Borders: Rosslyn Chapel, Abbotsford &amp; Melrose Abbey" as a bookable brief</td><td class="r">half or full day</td><td class="r">£265 half · £400 full · +£30 fee</td></tr>
+        <tr><td><a href="https://www.goscotlandtours.com/private-tours-scotland/rosslyn-chapel-tour.html" target="_blank" rel="noopener">Go Scotland Tours</a> · operator, Blue Badge guide included</td><td>Standing private <strong>Rosslyn Chapel + Roslin Glen</strong> half-day from Edinburgh</td><td class="r">~4h</td><td class="r">quote on request</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tnote"><strong>How to shortlist the rest yourself:</strong> <a href="https://www.stga.co.uk/find-your-guide-1" target="_blank" rel="noopener">STGA Find Your Guide</a> → Edinburgh/South East + English + Walking Tour (or Driver Guided) + 1/2 Day → use the "Contact" form on each profile. Brief them with the same four things every time so the quotes are comparable: <strong>Sunday 2 May 2027, afternoon from 13:30</strong>, party of two, Rosslyn Chapel plus whatever else fits, and whether you need them to drive. Then ask the one question that actually sorts them — <em>how often do you guide Rosslyn?</em> Expect quotes at or above the 2027 card (£235 half day, £355 full, £715 with a car). Kirsty's £920 is above the card because it's a full day of driver-guiding in her own vehicle, so compare it against the £715 line, not the £355 one.</p>
+
+  <h4 style="font-size:17px;margin:26px 0 10px;">Outlander film-location day tours — top rated</h4>
+  <div class="callout pine">
+    <p>If <em>Outlander</em> is on your list, these are the highest-rated options on Viator — all small-group coach day trips. The Inverness one overlaps your Day 5 sights, so it can double as the Loch Ness day:</p>
+    <ul style="margin:6px 0 0;padding-left:18px;color:var(--ink-soft);font-size:15px;line-height:1.5;">
+      <li><strong>Loch Ness, Outlander &amp; Urquhart Castle — from Inverness</strong> · 9h · from $72 · <strong>4.9 (1,649)</strong> — Clava Cairns (the real ancient stones that inspired Craigh na Dun — you can walk in and touch them), Culloden country, plus your Loch Ness &amp; Urquhart sights.</li>
+      <li><strong>Outlander Film Locations Day Trip — from Edinburgh</strong> · 9h30 · from $93 · <strong>4.9 (1,996)</strong> — Doune Castle (Castle Leoch), Midhope (Lallybroch), Falkland, Blackness.</li>
+      <li><strong>From Glasgow: Stirling Castle, Outlander &amp; Loch Lomond</strong> · 9h30 · from $70 · <strong>5.0 (184)</strong>.</li>
+    </ul>
+    <p style="margin-top:12px;"><a href="https://www.viator.com/searchResults/all?text=Outlander" target="_blank" rel="noopener">Browse all Outlander tours on Viator →</a></p>
+  </div>
+</section>
+
+<!-- LINKS -->
+<section class="block">
+  <div class="sec-label"><span class="k">08</span><h2>Key links</h2><span class="rule"></span></div>
+  <div class="links">
+    <a class="lk" href="https://www.edinburghcastle.scot/plan-your-visit/tickets/" target="_blank" rel="noopener"><span><span class="lt">Edinburgh Castle</span><span class="ld">Timed tickets</span></span><span class="arr">↗</span></a>
+    <a class="lk" href="https://www.realmarykingsclose.com/tickets-prices/" target="_blank" rel="noopener"><span><span class="lt">Real Mary King's Close</span><span class="ld">Underground tour</span></span><span class="arr">↗</span></a>
+    <a class="lk" href="https://www.historicenvironment.scot/visit-a-place/places/urquhart-castle/" target="_blank" rel="noopener"><span><span class="lt">Urquhart Castle</span><span class="ld">Slot + parking · Loch Ness</span></span><span class="arr">↗</span></a>
+    <a class="lk" href="https://www.jacobite.co.uk/tours" target="_blank" rel="noopener"><span><span class="lt">Jacobite Cruises</span><span class="ld">Loch Ness boat trips</span></span><span class="arr">↗</span></a>
+    <a class="lk" href="https://www.nts.org.uk/visit/places/culloden/planning-your-visit" target="_blank" rel="noopener"><span><span class="lt">Culloden Battlefield</span><span class="ld">National Trust for Scotland</span></span><span class="arr">↗</span></a>
+    <a class="lk" href="https://walkingtoursin.com/scotland-tours/glasgow/" target="_blank" rel="noopener"><span><span class="lt">Glasgow Mackintosh tour</span><span class="ld">Private · incl. Willow entry</span></span><span class="arr">↗</span></a>
+    <a class="lk" href="https://www.stga.co.uk/" target="_blank" rel="noopener"><span><span class="lt">STGA — Find a Guide</span><span class="ld">Blue Badge guides, direct</span></span><span class="arr">↗</span></a>
+    <a class="lk" href="https://www.marriott.com/en-us/hotels/invar-ac-hotel-inverness/overview/" target="_blank" rel="noopener"><span><span class="lt">AC Hotel Inverness</span><span class="ld">Bonvoy · riverside</span></span><span class="arr">↗</span></a>
+    <a class="lk" href="https://www.marriott.com/en-gb/hotels/glaar-ac-hotel-glasgow/overview/" target="_blank" rel="noopener"><span><span class="lt">AC Hotel Glasgow</span><span class="ld">Bonvoy · city centre</span></span><span class="arr">↗</span></a>
+    <a class="lk" href="https://sandybells.com/" target="_blank" rel="noopener"><span><span class="lt">Sandy Bell's</span><span class="ld">Edinburgh trad · nightly</span></span><span class="arr">↗</span></a>
+    <a class="lk" href="https://hootanannyinverness.co.uk/" target="_blank" rel="noopener"><span><span class="lt">Hootananny</span><span class="ld">Inverness trad · nightly</span></span><span class="arr">↗</span></a>
+    <a class="lk" href="https://edinburghtradfest.com/" target="_blank" rel="noopener"><span><span class="lt">Edinburgh TradFest</span><span class="ld">~30 Apr–10 May 2027</span></span><span class="arr">↗</span></a>
+  </div>
+</section>
+
+<footer>
+  <p class="disc">Prices are indicative per couple, gathered mid-2026 for the April–May 2027 season — 2027 rates aren't loaded on booking systems yet, so budget ~5–10% over and reconfirm live. Trad sessions are informal and their nights drift; verify each venue's calendar the week before. The dossier plans and stages the trip; reservations and payments are yours to place.</p>
+</footer>
+
+<script>
+  (function () {
+    var btn = document.getElementById('themeBtn');
+    var root = document.documentElement;
+    btn.addEventListener('click', function () {
+      var cur = root.getAttribute('data-theme');
+      if (!cur) { cur = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+      root.setAttribute('data-theme', cur === 'dark' ? 'light' : 'dark');
+    });
+  })();
+</script>
+</body>
+</html>

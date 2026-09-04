@@ -9,6 +9,7 @@ import BlogPost from "./pages/BlogPost";
 import About from "./pages/About";
 import SharedTrip from "./pages/SharedTrip";
 import Admin from "./pages/Admin";
+import Library from "./pages/Library";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/trip/:tripId" element={<SharedTrip />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/library" element={<Library />} />
       </Routes>
     </>
   );

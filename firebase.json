@@ -10,6 +10,18 @@
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
         {
+          "source": "/vault/**",
+          "function": { "functionId": "serveVaultDocFn", "region": "us-central1" }
+        },
+        {
+          "source": "/__session/login",
+          "function": { "functionId": "sessionLoginFn", "region": "us-central1" }
+        },
+        {
+          "source": "/__session/logout",
+          "function": { "functionId": "sessionLogoutFn", "region": "us-central1" }
+        },
+        {
           "source": "**",
           "destination": "/index.html"
         }
